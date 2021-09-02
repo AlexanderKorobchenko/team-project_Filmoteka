@@ -1,0 +1,29 @@
+.go-up__link {  
+  position: fixed;
+  z-index: 999;
+  bottom: 20px;
+  right: 20px;
+  padding: 3px;
+  border: solid 3px rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  text-decoration: none;
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 1));
+  transition: border 200ms linear;
+}
+
+.go-up__link:hover,
+.go-up__link:focus {
+  border: solid 3px rgba(255, 255, 255, 0.6);
+}
+
+.go-up__icon {
+  width: 26px;
+  height: 24px;
+  fill: rgba(255, 255, 255, 0.24);
+  transition: fill 200ms linear;
+}
+
+.go-up__link:hover .go-up__icon,
+.go-up__link:focus .go-up__icon {
+   fill: rgba(255, 255, 255, 0.6)
+}
