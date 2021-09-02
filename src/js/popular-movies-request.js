@@ -14,3 +14,5 @@ API.fetchMovies()
     console.log(response);
   })
   .catch(err => console.log(err));
+
+//   Первоначальный код
