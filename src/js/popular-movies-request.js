@@ -1,4 +1,4 @@
-import moviesList from '../templates/test-card.hbs';
+import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 
 const finder = new ApiService();
