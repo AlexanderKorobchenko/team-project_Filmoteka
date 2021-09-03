@@ -3,10 +3,10 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: $main-font;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  color: var(--card-text-color);
+  color: $card-text-color;
 }

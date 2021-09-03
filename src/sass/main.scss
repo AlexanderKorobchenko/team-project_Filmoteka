@@ -1,9 +1,13 @@
 // Путь к изображениям из SASS-файла всегда такой, как из папки css
 //background-image: url('../images/demo.jpg');
 
-// Стили для файла с примером HTML-фрагмента
-@import './common';
-@import './variables';
-@import './container';
-@import './loader';
-@import './button-go-up'
+@import './base/variables';
+@import './base/common';
+@import './base/container';
+
+@import './layout/header';
+@import './layout/main';
+@import './layout/footer';
+
+@import './components/loader';
+@import './components/button-go-up';
