@@ -3,9 +3,9 @@
 <li class="gallery__list">
    
     
-    <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="" class="gallery__image">
+    <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="{{title}}" class="gallery__image">
     <h2 class="gallery__title">{{title}}</h2>
-    <p class="gallery__text">{{genre_ids}} | {{release_date}}</p>
+    <p class="gallery__text">{{genre_ids}} | {{release_date}}<span class="gallery__rating">{{vote_average}}</span></p>
    
 </li>
   {{/each}} 
