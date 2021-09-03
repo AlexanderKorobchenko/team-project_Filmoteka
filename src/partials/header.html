@@ -1,42 +1,34 @@
 <header class="header" id="go-up">
-  <div class="header__nav-container">
-    <a href="" class="header__nav-logo">
-      <svg class="header__nav-logo-icon">
-        <use href="./images/sprite.svg#icon-film"></use>
-      </svg>
-      <span class="header__logo-text">Filmoteka</span>
-    </a>
-    <nav class="header__navigation">
-      <ul class="header__menu list">
-        <li class="header__menu-item">
-          <a href="" class="header__menu-link current link">Home</a>
-        </li>
-        <li class="menu__item">
-          <a href="" class="header__menu-link link">My library</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <div class="container">
 
-  <form class="header__search-form" id="search-form">
-    <input class="header__search-input" type="text" name="query" autocomplete="off"
-      placeholder="Search for a movie..." />
-    <button class="header__search-button" type="submit" title="Go!">
-      <svg class="header__search-icon">
-        <use href="./images/sprite.svg#icon-search"></use>
-      </svg>
-    </button>
-  </form>
+    <div class="navigation-list">
 
-  <div class="header__filter" id="filter">
-    <ul class="header__filter-list list">
-      <il class="header__filter-item item">
-        <button class="header__filter-button" type="button">Watched</button>
-      </il>
-      <il class="header__filter-item item">
-        <button class="header__filter-button" type="button">Queue</button>
-      </il>
-    </ul>
+      <div class="logo" id="logo-home">
+        <svg class="logo__icon">
+          <use href="./images/sprite.svg#icon-film">
+        </svg>
+        <span class="logo__text">Filmoteka</span>
+      </div>
+
+      <nav class="navigation">
+        <button class="navigation__btn" type="button" id="btn-home">home</button>
+        <button class="navigation__btn" type="button" id="btn-">my library</button>
+      </nav>
+
+    </div>
+
+    <form class="search" id="search-form">
+      <input class="search__input" type="text" name="query" autocomplete="off" placeholder="Поиск фильмов" />
+      <svg class="search__icon">
+        <use href="./images/sprite.svg#icon-search">
+      </svg>
+    </form>
+
+    <div class="liberary" id="liberary">
+      <button class="liberary__btn" type="button">Watched</button>
+      <button class="liberary__btn" type="button">Queue</button>
+    </div>
+
   </div>
 
   <!-- Уведомление об ошибке 
