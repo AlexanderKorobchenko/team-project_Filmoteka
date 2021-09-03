@@ -1,11 +1,14 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+// Путь к изображениям из SASS-файла всегда такой, как из папки css
+//background-image: url('../images/demo.jpg');
 
 // Стили для файла с примером HTML-фрагмента
-@import './example';
 @import './common';
 @import './variables';
-@import './base/variables';
+
+// @import './base/variables';
 @import './layout/header';
+
+@import './container';
+@import './loader';
+@import './button-go-up'
+
