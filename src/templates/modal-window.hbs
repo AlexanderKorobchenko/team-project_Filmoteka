@@ -6,7 +6,7 @@
             <ul class="modal__list">
                 <li class="modal__item">
                     <i class="modal__text">Vote / Votes</i>
-                    {{vote_average}} / {{vote_count}}
+                    <span class="modal__rating">{{vote_average}}</span> / {{vote_count}}
                 </li>
                 <li class="modal__item">
                     <i class="modal__text">Popularity</i>
@@ -21,11 +21,11 @@
                     {{genre_ids}}
                 </li>
             </ul>
-            <h3>About</h3>
-            <p>{{overview}}</p>
+            <h3 class="modal__item">About</h3>
+            <p class="modal__item">{{overview}}</p>
             <button class="modal__button" id="watched" type="button">add to Watched</button>
             <button class="modal__button" id="queue" type="button">add to queue</button>
         </div>
-        Х
+        <button type="button">X</button>
     </div>
 </div>
