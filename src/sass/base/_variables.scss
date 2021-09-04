@@ -1,4 +1,7 @@
 $main-font: 'Roboto', sans-serif;
+$font-weight: 500;
+$font-style: normal;
+$line-height: calc(16 / 12);
 $white-color: #ffffff;
 $orange-color: #ff6b08;
 $orange-second-color: #eb6308;
@@ -22,3 +25,7 @@ $desktop: 1024px;
 
 // gradient color
 $header-gradient-color: rgba(0, 0, 0, 0.56);
+
+//Переходы и анимация
+$transition-duration: 250ms;
+$timing-function: cubic-bezier(0.4, 0, 0.2, 1);
