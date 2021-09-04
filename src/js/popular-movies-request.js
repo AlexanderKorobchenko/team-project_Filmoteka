@@ -1,5 +1,11 @@
-import moviesList from '../templates/main-cards.hbs';
+// import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
+import moviesList from '../templates/test.hbs';
+import genreLIb from './generelmas.json';
+import filterGenres from './filterGenres.js';
+
+const genres = genreLIb.genres;
+console.log(genres);
 
 const finder = new ApiService();
 finder.searchType = 0;
@@ -13,10 +19,14 @@ function popularMovies() {
 
   finder
     .searchMovies()
-    .then(response => {
-      renderMoviesList(response);
-      console.log(response);
+    .then(({ results }) => {
+      return results.map(result => ({
+        ...result,
+        release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
+        genres: filterGenres(genres, result),
+      }));
     })
+    .then(renderMoviesList)
     .catch(err => console.log(err));
 }
 

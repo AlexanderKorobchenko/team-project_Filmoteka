@@ -1,0 +1,9 @@
+{{#each this}}
+  <li class='gallery__list'>
+
+    <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt='' class='gallery__image' />
+    <h2 class='gallery__title'>{{title}}</h2>
+    <p class='gallery__text'>{{genres}} | {{release_date}}</p>
+
+  </li>
+{{/each}}
