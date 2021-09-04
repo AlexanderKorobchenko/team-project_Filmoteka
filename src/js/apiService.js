@@ -32,9 +32,8 @@ export default class ApiService {
     //тут жестко заданный url, т.к. подгрузка жанров осуществляется без запросов пользователя, один раз,в самом начале работы
     return fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=en-US`)
       .then(response => response.json())
-      .then(res => {
-        return res;
-      })
+      .then(res => { return res; })
+      .then( data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
       .catch(err => console.log(err));
   }
 
