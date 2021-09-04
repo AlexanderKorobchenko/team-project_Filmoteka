@@ -1,14 +1,44 @@
-import paginationTmp from '../templates/paginationTmp.hbs'
+import paginationTmp from '../templates/paginationTmp.hbs';
+import paginationTmplMobile from '../templates/paginationTmplMobile.hbs';
 
-function creatPagination() {
-    console.log('pagination to start')
+window.onload = creatPagination();
+window.addEventListener("resize", screenWidthWindow);
+
+const buttonForDesktop = document.querySelectorAll('.pagination_mobile-out');
+
+function creatPagination() {              //создает разметку
+    
     const paginationEl = document.createElement('div');
     paginationEl.className = 'pagination';
-    paginationEl.innerHTML = paginationTmp();
-    document.querySelector(".main").appendChild(paginationEl);
+
+    if (document.documentElement.clientWidth > 768) { //прим. шаблон в зависимости от ширины окна
+        paginationEl.innerHTML = paginationTmp();
+    } else {
+        paginationEl.innerHTML = paginationTmplMobile();
+    }
+    
+    document.querySelector(".main").appendChild(paginationEl);    
 }
 
-creatPagination()
+function screenWidthWindow() {       //в зависимости от ширина окна изменяет кол-во кнопок  
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        onAddButton()
+    } else {
+        onRemoveButton()        
+    }
+}
+
+function onAddButton() {
+   buttonForDesktop.forEach((button) => {
+            button.classList.remove('visually-hidden')
+        }) 
+}
+
+function onRemoveButton() {
+    buttonForDesktop.forEach((button) => {
+            button.classList.add('visually-hidden')
+        })
+}
 
 
 

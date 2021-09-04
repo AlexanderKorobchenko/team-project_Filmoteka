@@ -17,7 +17,6 @@
     width: 40px;
     height: 40px;
     // line-height: 40px;
-    text-align: center;
     border: none;
     border-radius: 5px;
     background-color: rgba(255, 107, 8, 0);
@@ -55,7 +54,7 @@
   -o-transform: scale(1.1);
 }
 
-.pagination_mobile-out {
+.visually-hidden {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
