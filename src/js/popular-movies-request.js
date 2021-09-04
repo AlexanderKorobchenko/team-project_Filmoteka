@@ -2,12 +2,12 @@ import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import filterGenres from './filterGenres.js';
 
-const genres = JSON.parse(localStorage.getItem('Genres'));
-
 const finder = new ApiService();
 finder.searchType = 0;
 
 finder.searchGenres();
+
+const genres = JSON.parse(localStorage.getItem('Genres'));
 
 const galleryList = document.getElementById('gallery');
 
