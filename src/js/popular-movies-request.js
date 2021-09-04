@@ -7,7 +7,7 @@ finder.searchType = 0;
 
 finder.searchGenres();
 
-const genres = JSON.parse(localStorage.getItem('Genres'));
+// const genres = JSON.parse(localStorage.getItem('Genres'));
 
 const galleryList = document.getElementById('gallery');
 
@@ -19,6 +19,7 @@ function popularMovies() {
   finder
     .searchMovies()
     .then(({ results }) => {
+      const genres = JSON.parse(localStorage.getItem('Genres'));
       return results.map(result => ({
         ...result,
         release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
