@@ -7,8 +7,6 @@ finder.searchType = 0;
 
 finder.searchGenres();
 
-// const genres = JSON.parse(localStorage.getItem('Genres'));
-
 const galleryList = document.getElementById('gallery');
 
 function popularMovies() {
