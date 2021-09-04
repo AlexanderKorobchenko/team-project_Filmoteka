@@ -1,20 +1,31 @@
 .footer {
-    height: 78px;
-    background-color: $bcg-footer-color;
+  padding: 30px 0px;
+  background-color: $bcg-footer-color;
 }
 
 .footer__text {
-    // margin-top: 20px;
-    // margin-bottom: auto;
-    // height: 20px;
     text-align: center;
     font-size: 16px;
     line-height: 1.19;
     color: $footer-text-color;
 }
+
 .footer__btn-open-modal-team {
     text-decoration: underline;
     cursor: pointer;
+}
+
+// mobile
+@media screen and (max-width: 767px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 1.14;
+  }
+  
+  .footer__second-text {
+    display: inline-block;
+    margin-top: 10px;
+  }
 }
 
 // сердечко)
