@@ -1,6 +1,6 @@
-// import moviesList from '../templates/main-cards.hbs';
+import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
-import moviesList from '../templates/test.hbs';
+// import moviesList from '../templates/test.hbs';
 import genreLIb from './generelmas.json';
 import filterGenres from './filterGenres.js';
 
@@ -9,6 +9,8 @@ console.log(genres);
 
 const finder = new ApiService();
 finder.searchType = 0;
+
+finder.searchGenres();
 
 const galleryList = document.getElementById('gallery');
 
