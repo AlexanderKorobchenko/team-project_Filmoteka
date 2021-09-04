@@ -1,6 +1,7 @@
 export default class ApiService {
   constructor() {
     this.query = '';
+    this.id = '';
     this.page = 1;
     this.searchIndex = 0;
     this.totalResultsFound = 0;
@@ -13,7 +14,7 @@ export default class ApiService {
     this.moviesUrls = [
       `https://api.themoviedb.org/3/trending/movie/day?api_key=${this.key}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/search/movie?api_key=${this.key}&language=en-US&query=${this.query}&page=${this.page}&include_adult=false`,
-      `https://api.themoviedb.org/3/movie/${this.query}?api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
+      `https://api.themoviedb.org/3/movie/${this.id}?api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
     ];
   }
 
@@ -35,6 +36,13 @@ export default class ApiService {
       .then(res => { return res; })
       .then( data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
       .catch(err => console.log(err));
+  }
+  searchMovieCard() {
+    const url = this.moviesUrls[this.searchIndex];
+    return fetch(url)
+    .then(response => response.json())
+    .then(res => { return res; })
+    .catch(err => console.log(err));
   }
 
   searchReset() {
@@ -58,6 +66,9 @@ export default class ApiService {
     console.log(this.page);
     this.defineUrls();
   }
+  set MovieCardId(newId) {
+    this.id = newId;
+ }
 }
 // В зависимости от типа запроса, указываем apiService.searchType = 0 - для поиска "популярных"
 //  apiService.searchType = 1 - для поиска по словам

@@ -1,0 +1,17 @@
+.movie__modal {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.modal-window {
+  display: block;
+  width: 882px;
+  height: 568px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+}
