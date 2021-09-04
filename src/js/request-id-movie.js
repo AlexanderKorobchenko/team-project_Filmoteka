@@ -1,8 +1,8 @@
-import moviesCard from '../templates/modal-window.hbs';
+import moviesCard from '../templates/test.hbs';
 import ApiService from './apiService.js';
 const refs = {
   galleryList: document.getElementById('gallery'),
-  movieModal: document.querySelector('.movie__modal'),
+  movieModal: document.querySelector('#modal-window'),
   modalButton: null,
 
   // openModalBtn: document.querySelector('[data-modal-open]'),
@@ -18,6 +18,7 @@ refs.galleryList.addEventListener('click', onClickgalleryList);
 function onClickgalleryList(e) {
   finder.MovieCardId = e.target.offsetParent.id;
   finder.searchType = 2;
+  refs.movieModal.classList.add('is-open');
   finder.searchMovieCard()
     .then((data) => {
       const markup = moviesCard(data);
@@ -27,7 +28,7 @@ function onClickgalleryList(e) {
       refs.movieModal.style.display = "block";
       // refs.modalButton = document.querySelector(".modal__button");
     })
-    .catch(err => console.log(err));    
+    .catch(err => console.log(err));
   // console.log(refs.modalButton);
   // refs.modalButton.addEventListener('click', onClickmovieModal)
 }

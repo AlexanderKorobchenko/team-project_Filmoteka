@@ -1,13 +1,3 @@
-{{#each this}}
-<li class='gallery__list'>
-
-  <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt='' class='gallery__image' />
-  <h2 class='gallery__title'>{{title}}</h2>
-  <p class='gallery__text'>{{genres}} | {{release_date}}</p>
-
-</li>
-{{/each}}
-
 <div class="modal__backdrop"></div>
 
 <div class="modal__container">
@@ -23,13 +13,12 @@
     {{/unless}}
   </div>
 
-
   <div class="film__information">
     <div>
       <h2 class="film__title">{{title}}</h2>
       <ul>
         <li class="film__item">
-          <p class="film__details ">Vote / Votes</p>
+          <p class="film__details">Vote / Votes</p>
           <p class="film__info--uper">
             <span class=" film__rating--orange">{{vote_average}}</span>
             <span class="film__rating--divider"> / </span>
@@ -69,4 +58,5 @@
     </div>
     <button type="button" class="close__button" data-action="close-modal"></button>
   </div>
+
 </div>

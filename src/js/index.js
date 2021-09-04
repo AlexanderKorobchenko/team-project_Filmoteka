@@ -1,4 +1,4 @@
 import '../sass/main.scss';
+import './pagination.js';
 import './popular-movies-request.js';
-import './pagination';
-import './modals';
+import './request-id-movie';
