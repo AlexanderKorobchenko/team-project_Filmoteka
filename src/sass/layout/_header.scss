@@ -2,7 +2,7 @@
   display: block;
   margin: 0 auto;
   width: 100%;
-  padding: 5px 0px;
+  padding: 15px 0px;
   height: 230px;
 
   font-family: $white-color;
@@ -11,21 +11,49 @@
 
   background-color: #2a2a2a;
   background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-    url(../../images/);
+    url('../../images/header-background-mobile-1x.jpg');
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header {
+      background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
+        url('../../images/header-background-mobile@2x.jpg');
+    }
+  }
+
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     padding: 45px 60px 20px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-      url(../../images/header-background-tablet@2x.jpg);
+      url('../../images/header-background-tablet-1x.jpg');
+  }
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header {
+      background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
+        url('../../images/header-background-tablet@2x.jpg');
+    }
   }
 
   @media screen and (min-width: $desktop) {
     padding-top: 40px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-      url(../../images/header-background-desktop@2x.jpg);
+      url('../../images/header-background-desktop-1x.jpg');
+  }
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header {
+      background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
+        url('../../images/header-background-desktop@2x.jpg');
+    }
   }
 }
 
