@@ -2,8 +2,6 @@ import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import filterGenres from './filterGenres.js';
 
-const genres = JSON.parse(localStorage.getItem('Genres'));
-
 const finder = new ApiService();
 finder.searchType = 0;
 
@@ -19,6 +17,7 @@ function popularMovies() {
   finder
     .searchMovies()
     .then(({ results }) => {
+      const genres = JSON.parse(localStorage.getItem('Genres'));
       return results.map(result => ({
         ...result,
         release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
@@ -31,7 +30,7 @@ function popularMovies() {
 
 popularMovies();
 
-// пока так. Возможны в дальнейшем мелкие корректировки и функции которые ниже будут удалены и взяты с других файлов
+// пока так. Возможны в дальнейшем мелкие корректировки и функции которые ниже будут удалены и взяты с других файлов.
 
 function clearGalleryContainer() {
   galleryList.innerHTML = '';
