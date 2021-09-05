@@ -13,26 +13,28 @@ let movieId = null;
 const finder = new ApiService();
 finder.searchType = 2;
 
-refs.galleryList.addEventListener('click', onClickgalleryList);
+refs.galleryList.addEventListener('click', openMovieCard);
 
-function onClickgalleryList(e) {
-  finder.searchRequest = e.target.offsetParent.id;// THIS LINE WAS MODIFIED BY VLAD OTRISHKO
-  console.log(e.target.offsetParent.id);
+function openMovieCard(e) {
+  finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
   refs.movieModal.classList.add('is-open');
-  // finder.searchMovieCard()
-  finder.searchMovies()//----------------------THIS LINE WAS MODIFIED BY VLAD OTRISHKO
+  finder.searchMovies()
     .then((data) => {
       const markup = moviesCard(data);
       refs.movieModal.innerHTML = markup;
     })
     .then(() => {
-      refs.movieModal.style.display = "block";
-      // refs.modalButton = document.querySelector(".modal__button");
+      refs.modalButton = document.querySelector(".close__button");
+      refs.modalButton.addEventListener('click', closeMovieCard);
     })
     .catch(err => console.log(err));
-  // console.log(refs.modalButton);
-  // refs.modalButton.addEventListener('click', onClickmovieModal)
+    // refs.modalButton.addEventListener('click', onClickmovieModal)
+  }
+function closeMovieCard() {
+  console.log(1)
+  refs.modalButton.removeEventListener('click', closeMovieCard);
+  refs.movieModal.classList.remove('is-open');
 }
 
 
