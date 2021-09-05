@@ -16,10 +16,12 @@ finder.searchType = 2;
 refs.galleryList.addEventListener('click', onClickgalleryList);
 
 function onClickgalleryList(e) {
-  finder.MovieCardId = e.target.offsetParent.id;
+  finder.searchRequest = e.target.offsetParent.id;// THIS LINE WAS MODIFIED BY VLAD OTRISHKO
+  console.log(e.target.offsetParent.id);
   finder.searchType = 2;
   refs.movieModal.classList.add('is-open');
-  finder.searchMovieCard()
+  // finder.searchMovieCard()
+  finder.searchMovies()//----------------------THIS LINE WAS MODIFIED BY VLAD OTRISHKO
     .then((data) => {
       const markup = moviesCard(data);
       refs.movieModal.innerHTML = markup;

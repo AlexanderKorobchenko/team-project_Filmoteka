@@ -23,8 +23,12 @@ function popularMovies() {
         release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
         genres: filterGenres(genres, result),
       }));
+    })//-------------------modified  by Vlad Otrishko
+    .then(data => {
+      renderMoviesList(data);
+      return data;
     })
-    .then(renderMoviesList)
+    .then(data => localStorage.setItem('Popular', JSON.stringify(data)))//-----modified END
     .catch(err => console.log(err));
 }
 
