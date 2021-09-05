@@ -47,7 +47,7 @@ let pagesEl = document.querySelectorAll('.pagination_item'); //кнопки па
 let pagesTotal = 1000 // total.pages from API
 
 let clearButton = pagesEl.length - 2;// 9 кнопок для записи страниц
-// console.log(clearButton)
+
 onWritesPageNumbers()
 
 function onWritesPageNumbers() { // записывает номера страниц в кнопки
