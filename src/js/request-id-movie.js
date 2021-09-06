@@ -1,3 +1,4 @@
+import { includes } from 'lodash';
 import moviesCard from '../templates/test.hbs';
 import ApiService from './apiService.js';
 const refs = {
@@ -11,6 +12,9 @@ const refs = {
 }
 let movieId = null;
 const finder = new ApiService();
+
+
+
 finder.searchType = 2;
 
 refs.galleryList.addEventListener('click', openMovieCard);
@@ -23,6 +27,23 @@ function openMovieCard(e) {
     .then((data) => {
       const markup = moviesCard(data);
       refs.movieModal.innerHTML = markup;
+      
+      const watchBtn = document.querySelector('.btn__watch');
+      const popularFilm = JSON.parse(localStorage.getItem('Popular'));
+      watchBtn.addEventListener('click', () => {
+        // localStorage.setItem("Watched", JSON.stringify(data));
+        // const watched = JSON.parse(localStorage.getItem('Watched'))
+        
+        localStorage.setItem('watched', JSON.stringify(popularFilm.filter((film) => {
+
+          if (film.id === e.target.offsetParent.id) {
+             console.log(film.id)
+            return film;
+          }
+        })))
+        
+      });
+     
     })
     .then(() => {
       refs.modalButton = document.querySelector(".close__button");
