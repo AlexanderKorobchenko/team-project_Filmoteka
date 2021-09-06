@@ -7,7 +7,6 @@ const refs = {
 }
 
 const finder = new ApiService();
-finder.searchType = 2;
 
 refs.galleryList.addEventListener('click', onSearchID);
 
@@ -18,6 +17,22 @@ function onSearchID(e) {
     .then((data) => {
       refs.modalWindow.innerHTML = moviesCard(data);
       openModalWindow();
+    
+      const watchBtn = document.querySelector('.btn__watch');
+      const popularFilm = JSON.parse(localStorage.getItem('Popular'));
+      watchBtn.addEventListener('click', () => {
+        // localStorage.setItem("Watched", JSON.stringify(data));
+        // const watched = JSON.parse(localStorage.getItem('Watched'))
+        
+        localStorage.setItem('watched', JSON.stringify(popularFilm.filter((film) => {
+          if (film.id === e.target.offsetParent.id) {
+            console.log(film.id)
+            return film;
+          }
+        })))
+        
+      });
+    
     })
     .catch(err => console.log(err));
 }
