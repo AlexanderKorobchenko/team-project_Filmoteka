@@ -97,4 +97,4 @@ module.exports=require("./lib/Granim.js");
 },{"granim":"KI3S"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss"),require("./pagination.js"),require("./popular-movies-request.js"),require("./request-id-movie"),require("./genres-menu"),require("./gradient-granim.js");
 },{"../sass/main.scss":"clu1","./pagination.js":"o8lo","./popular-movies-request.js":"Vnj8","./request-id-movie":"I0GR","./genres-menu":"tgco","./gradient-granim.js":"bges"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project_Filmoteka/js.accea08b.js.map
+//# sourceMappingURL=/team-project_Filmoteka/js.68cf5012.js.map
