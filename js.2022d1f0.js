@@ -29,4 +29,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../templates/genres-menu.hbs":"P9x1","../templates/main-cards.hbs":"jhRP","./apiService.js":"eQwa","./filterGenres.js":"yJhR"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss"),require("./pagination.js"),require("./popular-movies-request.js"),require("./request-id-movie"),require("./genres-menu");
 },{"../sass/main.scss":"clu1","./pagination.js":"o8lo","./popular-movies-request.js":"Vnj8","./request-id-movie":"I0GR","./genres-menu":"tgco"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project_Filmoteka/js.5e9347f3.js.map
+//# sourceMappingURL=/team-project_Filmoteka/js.2022d1f0.js.map
