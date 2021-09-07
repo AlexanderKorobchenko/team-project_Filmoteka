@@ -25,7 +25,7 @@ export default class ApiService {
       .then(res => {
         this.totalResultsFound = res.total_results; //возможно, понадобится для пагинации
         this.totalPagesFound = res.total_pages;
-        console.log(res);
+        //console.log(res);
         return res;
       }).catch(err => console.log(err));
   }
@@ -34,7 +34,7 @@ export default class ApiService {
     return fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=en-US`)
       .then(response => response.json())
       .then(res => { return res; })
-      .then( data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
+      .then(data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
       .catch(err => console.log(err));
   }
 

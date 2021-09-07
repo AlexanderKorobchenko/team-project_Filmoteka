@@ -1,33 +1,25 @@
-import { includes } from 'lodash';
 import moviesCard from '../templates/test.hbs';
 import ApiService from './apiService.js';
+
 const refs = {
   galleryList: document.getElementById('gallery'),
-  movieModal: document.querySelector('#modal-window'),
-  modalButton: null,
-
-  // openModalBtn: document.querySelector('[data-modal-open]'),
-  // closeModalBtn: document.querySelector('[data-modal-close]'),
-  // modal: document.querySelector('[data-modal]'),
+  modalWindow: document.querySelector('#modal-window'),
 }
-let movieId = null;
+
 const finder = new ApiService();
 
+refs.galleryList.addEventListener('click', onSearchID);
 
-
-finder.searchType = 2;
-
-refs.galleryList.addEventListener('click', openMovieCard);
-
-function openMovieCard(e) {
+function onSearchID(e) {
+  if(e.target.nodeName === 'UL') {return}
   finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
-  refs.movieModal.classList.add('is-open');
   finder.searchMovies()
     .then((data) => {
-      const markup = moviesCard(data);
-      refs.movieModal.innerHTML = markup;
-      
+      refs.modalWindow.innerHTML = moviesCard(data);
+      openModalWindow();
+
+      //вынести в новую функцию ниже
       const watchBtn = document.querySelector('.btn__watch');
       const popularFilm = JSON.parse(localStorage.getItem('Popular'));
       
@@ -59,10 +51,7 @@ function openMovieCard(e) {
         localStorage.setItem('watched', JSON.stringify(a));
       }
 
-      function setTextContent() {
-
-        
-      }
+      function setTextContent() {}
      
     })
     .then(() => {
@@ -70,25 +59,33 @@ function openMovieCard(e) {
       refs.modalButton.addEventListener('click', closeMovieCard);
     })
     .catch(err => console.log(err));
-    // refs.modalButton.addEventListener('click', onClickmovieModal)
+};
+
+// ================= начало открытие/закрытие модалки =================
+function openModalWindow() {
+  refs.modalWindow.classList.add('is-open'); //показали модалку
+  document.querySelector(".close__button").addEventListener('click', closeModalWindow);
+  refs.modalWindow.addEventListener('click', onControlClick);
+  window.addEventListener('keydown', onControlKey);
+};
+
+function onControlClick(event) {
+  if (event.target.classList.value === 'modal__backdrop') {
+    closeModalWindow();
   }
-function closeMovieCard() {
-  console.log(1)
-  refs.modalButton.removeEventListener('click', closeMovieCard);
-  refs.movieModal.classList.remove('is-open');
-}
+  return;
+};
 
+function onControlKey(event) {
+  if (refs.modalWindow.classList.value.includes('is-open')) {
+    if (event.keyCode === 27) {
+      closeModalWindow();
+    };
+  }
+};
 
-
-// function onClickmovieModal()  {
-//   refs.movieModal.style.display = "none";
-// }
-
-
-// refs.galleryList.addEventListener('click', toggleModal);
-// refs.closeModalBtn.addEventListener('click', toggleModal);
-
-// function toggleModal() {
-//   refs.modal.classList.toggle('is-hidden');
-// }
-
+function closeModalWindow() {
+  refs.modalWindow.classList.remove('is-open');
+  document.querySelector('.image').src = '';
+};
+// ================= конец открытие/закрытие модалки =================
