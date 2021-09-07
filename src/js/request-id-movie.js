@@ -11,7 +11,7 @@ const finder = new ApiService();
 refs.galleryList.addEventListener('click', onSearchID);
 
 function onSearchID(e) {
-  if(e.target.nodeName === 'UL') {return}
+  if (e.target.nodeName === 'UL') { return }
   finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
   finder.searchMovies()
@@ -26,9 +26,9 @@ function onSearchID(e) {
       getIncludesFilms(e.target.offsetParent.id);
 
       function getIncludesFilms(id) {
-        console.log(id)
+        // console.log(id)
         const arrayPopFilm = localStorage.getItem('watched');
-        
+
         if (arrayPopFilm.includes(id)) {
           watchBtn.textContent = 'Delete from watched';
         };
@@ -36,60 +36,48 @@ function onSearchID(e) {
         if (!arrayPopFilm.includes(id)) {
           watchBtn.textContent = 'Add to watched';
         }
-        console.log(arrayPopFilm.includes(id))
+        // console.log(arrayPopFilm.includes(id))
       }
-      
+
       watchBtn.addEventListener('click', onWatch);
-     
+
       function onWatch(event) {
-        console.log(+event.target.dataset.id)
+        // console.log(+event.target.dataset.id)
 
         if (event.target.innerHTML === 'Delete from watched') {
           // Функция удаления карточки с фильмомо из библиотеки
           const arrObjectWatch = JSON.parse(localStorage.getItem('watched'));
           let indx = null;
-          for (let i = 0; i < arrObjectWatch.length; i +=1){
+          for (let i = 0; i < arrObjectWatch.length; i += 1) {
             if (+arrObjectWatch[i].id === +event.target.dataset.id) {
               console.log('Совпало')
               console.log(arrObjectWatch[i])
-               indx = i;
+              indx = i;
             }
           }
-          console.log(indx)
-          const deletedWatch = arrObjectWatch.splice(indx, 1);
-          console.log(deletedWatch)
-          console.log(arrObjectWatch)
-         
-        };
-
-        if (event.target.innerHTML === 'Add to watched') {
+          arrObjectWatch.splice(indx, 1);
+          localStorage.setItem('watched', JSON.stringify(arrObjectWatch));
+          watchBtn.textContent = 'Add to watched';
+        } else {
+          //if (event.target.innerHTML === 'Add to watched') {
 
           const filteredFilm = popularFilm.filter((film) => {
-               
-          if (+film.id === +event.target.dataset.id) {
-            console.log(film.id)
-            
-            return film;
-          }
-        });
 
-        let a = [];
-        a = JSON.parse(localStorage.getItem('watched')) || [];
-        a.push(filteredFilm[0]);
+            if (+film.id === +event.target.dataset.id) {
+              // console.log(film.id)
+              return film;
+            }
+          });
 
-        console.log(a);
-        localStorage.setItem('watched', JSON.stringify(a));
-        watchBtn.textContent = 'Delete from watched';
+          let a = [];
+          a = JSON.parse(localStorage.getItem('watched')) || [];
+          a.push(filteredFilm[0]);
+
+          console.log(a);
+          localStorage.setItem('watched', JSON.stringify(a));
+          watchBtn.textContent = 'Delete from watched';
         };
-
-        
       }
-
-     
-    })
-    .then(() => {
-      refs.modalButton = document.querySelector(".close__button");
-      refs.modalButton.addEventListener('click', closeMovieCard);
     })
     .catch(err => console.log(err));
 };
