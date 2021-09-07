@@ -13,6 +13,7 @@ const tool = new modalMechanics();
 refs.galleryList.addEventListener('click', openMovieCard);
 
 function openMovieCard(e) {
+  if(e.target.nodeName === 'UL') {return}
   finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
   finder.searchMovies()
