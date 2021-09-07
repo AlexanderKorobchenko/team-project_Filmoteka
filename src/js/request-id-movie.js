@@ -22,36 +22,69 @@ function onSearchID(e) {
       //вынести в новую функцию ниже
       const watchBtn = document.querySelector('.btn__watch');
       const popularFilm = JSON.parse(localStorage.getItem('Popular'));
+
+      getIncludesFilms(e.target.offsetParent.id);
+
+      function getIncludesFilms(id) {
+        console.log(id)
+        const arrayPopFilm = localStorage.getItem('watched');
+        
+        if (arrayPopFilm.includes(id)) {
+          watchBtn.textContent = 'Delete from watched';
+        };
+
+        if (!arrayPopFilm.includes(id)) {
+          watchBtn.textContent = 'Add to watched';
+        }
+        console.log(arrayPopFilm.includes(id))
+      }
       
       watchBtn.addEventListener('click', onWatch);
-      watchBtn.addEventListener('click', setTextContent);
+     
+      function onWatch(event) {
+        console.log(+event.target.dataset.id)
 
-      // const arr = JSON.parse(localStorage.getItem('watched'));
-      // if (arr === null) {
-      //   localStorage.setItem('watched', JSON.stringify([]));
-      // }
-      // console.log(arr)
-      
-      function onWatch() {
+        if (event.target.innerHTML === 'Delete from watched') {
+          // Функция удаления карточки с фильмомо из библиотеки
+          const arrObjectWatch = JSON.parse(localStorage.getItem('watched'));
+          let indx = null;
+          for (let i = 0; i < arrObjectWatch.length; i +=1){
+            if (+arrObjectWatch[i].id === +event.target.dataset.id) {
+              console.log('Совпало')
+              console.log(arrObjectWatch[i])
+               indx = i;
+            }
+          }
+          console.log(indx)
+          const deletedWatch = arrObjectWatch.splice(indx, 1);
+          console.log(deletedWatch)
+          console.log(arrObjectWatch)
+         
+        };
 
-        const filteredFilm = popularFilm.filter((film) => {
+        if (event.target.innerHTML === 'Add to watched') {
+
+          const filteredFilm = popularFilm.filter((film) => {
                
-          if (Number(film.id) === Number(e.target.offsetParent.id)) {
+          if (+film.id === +event.target.dataset.id) {
             console.log(film.id)
             
             return film;
           }
         });
 
-        var a = [];
+        let a = [];
         a = JSON.parse(localStorage.getItem('watched')) || [];
-        a.push(filteredFilm);
+        a.push(filteredFilm[0]);
 
         console.log(a);
         localStorage.setItem('watched', JSON.stringify(a));
+        watchBtn.textContent = 'Delete from watched';
+        };
+
+        
       }
 
-      function setTextContent() {}
      
     })
     .then(() => {
