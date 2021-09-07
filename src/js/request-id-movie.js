@@ -22,19 +22,41 @@ function onSearchID(e) {
       //вынести в новую функцию ниже
       const watchBtn = document.querySelector('.btn__watch');
       const popularFilm = JSON.parse(localStorage.getItem('Popular'));
-      watchBtn.addEventListener('click', () => {
-        // localStorage.setItem("Watched", JSON.stringify(data));
-        // const watched = JSON.parse(localStorage.getItem('Watched'))
+      
+      watchBtn.addEventListener('click', onWatch);
+      watchBtn.addEventListener('click', setTextContent);
 
-        localStorage.setItem('watched', JSON.stringify(popularFilm.filter((film) => {
-          if (film.id === e.target.offsetParent.id) {
+      // const arr = JSON.parse(localStorage.getItem('watched'));
+      // if (arr === null) {
+      //   localStorage.setItem('watched', JSON.stringify([]));
+      // }
+      // console.log(arr)
+      
+      function onWatch() {
+
+        const filteredFilm = popularFilm.filter((film) => {
+               
+          if (Number(film.id) === Number(e.target.offsetParent.id)) {
             console.log(film.id)
+            
             return film;
           }
-        })))
+        });
 
-      });
+        var a = [];
+        a = JSON.parse(localStorage.getItem('watched')) || [];
+        a.push(filteredFilm);
 
+        console.log(a);
+        localStorage.setItem('watched', JSON.stringify(a));
+      }
+
+      function setTextContent() {}
+     
+    })
+    .then(() => {
+      refs.modalButton = document.querySelector(".close__button");
+      refs.modalButton.addEventListener('click', closeMovieCard);
     })
     .catch(err => console.log(err));
 };
