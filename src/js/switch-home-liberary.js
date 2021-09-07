@@ -1,25 +1,4 @@
-/*
-1. На кнопку My Library в хедере вешается слушатель событий по клику и вызывается функция (это будет делать Саша +
- она создаст эту функцию, которая прячет инпут и выводит твои кнопки, используй эту функцию). Эта функция выполняет следуйщие действия:
- - переводит кнопку Watched, в состояние enable
- - переводит кнопку Queue в состояние disable
- - очищает мейн
- - рендерит карточки с локолстореджа с массива watched.
-
-2. На кнопки Watched, Queue вешается слушатель событий (скорее всего внутри функции выше)
-
-3. При нажатии на кнопку Queue:
- - переводит кнопку Watched, в состояние disable
- - переводит кнопку Queue в состояние enable
- - очищает мейн
- - рендерит карточки с локолстореджа с массива Queue
-
-4. При нажатии на кнопку Watched:
- - переводит кнопку Watched, в состояние enable
- - переводит кнопку Queue в состояние disable
- - очищает мейн
- - рендерит карточки с локолстореджа с массива Watched:
-*/
+import moviesList from '../templates/main-cards.hbs';
 
 const href = {
     logoBtn: document.getElementById('logo-home'),
@@ -28,7 +7,8 @@ const href = {
     search: document.getElementById('search-form'),
     library: document.getElementById('liberary'),
     backgroundHome: document.querySelector('.background'),
-    backgroundLibrary: document.querySelector('.background-library')
+    backgroundLibrary: document.querySelector('.background-library'),
+    galeryList: document.getElementById('gallery'),
 }
 
 // переключение между страницами
@@ -49,6 +29,10 @@ function onGoHome(event) {
     href.library.classList.add('hidden');
 
     //рендер текущей страници
+    const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
+    //console.log(currentPageArray)
+    renderMoviesList(currentPageArray);
+    console.log('рендер разметки с LocalStorage');
 };
 
 function onGoLibrary(event) {
@@ -92,10 +76,31 @@ function showWatched() {
     href.library.firstElementChild.classList.add('liberary__btn-current');
     href.library.lastElementChild.classList.remove('liberary__btn-current');
     //рендер библиотеки watched;
+    const watchedArray = JSON.parse(localStorage.getItem('watched'));
+
+    if (watchedArray.length === 0) {
+        console.log('watchedArray = 0');
+        return;
+    };
+
+    renderMoviesList(watchedArray);
 };
 
 function showQueue() {
     href.library.lastElementChild.classList.add('liberary__btn-current');
     href.library.firstElementChild.classList.remove('liberary__btn-current');
     //рендер библиотеки Queue;
+    const watchedQueue = JSON.parse(localStorage.getItem('queue'));
+
+    if (watchedQueue.length === 0) {
+        console.log('queueArray = 0');
+        return;
+    };
+
+    renderMoviesList(watchedQueue);
+};
+
+// создание разметки
+function renderMoviesList(movie) {
+    href.galeryList.innerHTML = moviesList(movie);
 };
