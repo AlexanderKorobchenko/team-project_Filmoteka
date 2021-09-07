@@ -26,7 +26,7 @@ const href = {
     homeBtn: document.getElementById('btn-home'),
     libraryBtn: document.getElementById('btn-library'),
     search: document.getElementById('search-form'),
-    libraly: document.getElementById('liberary'),
+    library: document.getElementById('liberary'),
     backgroundHome: document.querySelector('.background'),
     backgroundLibrary: document.querySelector('.background-library')
 }
@@ -46,7 +46,7 @@ function onGoHome(event) {
     href.homeBtn.classList.add('navigation__btn-current');
 
     href.search.classList.remove('hidden');
-    href.libraly.classList.add('hidden');
+    href.library.classList.add('hidden');
 
     //рендер текущей страници
 };
@@ -60,8 +60,42 @@ function onGoLibrary(event) {
     href.homeBtn.classList.remove('navigation__btn-current');
     href.libraryBtn.classList.add('navigation__btn-current');
 
-    href.libraly.classList.remove('hidden');
+    href.library.classList.remove('hidden');
     href.search.classList.add('hidden');
 
-    //рендер библиотеки
+    let switchLibrary = Boolean(localStorage.getItem('checkBoxLibrary'));
+
+    if (!switchLibrary) {
+        showWatched();
+    }
+
+    if (switchLibrary) {
+        showQueue();
+    }
+};
+
+//переключение между библиотеками
+href.library.firstElementChild.addEventListener('click', onClickWathed);
+href.library.lastElementChild.addEventListener('click', onClickQueue);
+
+function onClickWathed() {
+    localStorage.setItem('checkBoxLibrary', '');
+    showWatched();
+};
+
+function onClickQueue() {
+    localStorage.setItem('checkBoxLibrary', 'queue');
+    showQueue();
+};
+
+function showWatched() {
+    href.library.firstElementChild.classList.add('liberary__btn-current');
+    href.library.lastElementChild.classList.remove('liberary__btn-current');
+    //рендер библиотеки watched;
+};
+
+function showQueue() {
+    href.library.lastElementChild.classList.add('liberary__btn-current');
+    href.library.firstElementChild.classList.remove('liberary__btn-current');
+    //рендер библиотеки Queue;
 };
