@@ -11,6 +11,7 @@ const finder = new ApiService();
 refs.galleryList.addEventListener('click', onSearchID);
 
 function onSearchID(e) {
+  if(e.target.nodeName === 'UL') {return}
   finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
   finder.searchMovies()
