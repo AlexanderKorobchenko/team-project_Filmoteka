@@ -5,3 +5,4 @@ import './request-id-movie';
 import './genres-menu';
 import './gradient-granim.js';
 import './input-movies-request';
+import './switch-home-liberary';
