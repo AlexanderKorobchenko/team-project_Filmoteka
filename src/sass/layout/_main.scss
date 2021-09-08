@@ -1,67 +1,68 @@
+.main {
+  min-height: calc(100vh - 330px);
 
-.main{
-    min-height: calc(100vh - 330px);
-    
-    @media screen and (max-width: 767px) {
-      min-height: calc(100vh - 307px);
-    }
+  @media screen and (max-width: 767px) {
+    min-height: calc(100vh - 307px);
+  }
 
-    padding-top: 20px;
-    padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
-.gallery__list{
+.gallery__list {
   margin: 20px;
   transform: scale(1);
   transition: transform 150ms linear;
 
-
-  &:hover{
-      cursor: grab;
-      transform: scale(1.04);   
+  &:hover {
+    cursor: grab;
+    transform: scale(1.04);
   }
 }
 
-.gallery__image{
+// .gallery__image-border {
+//   border: 3px;
+//   color: #000;
+// }
+
+.gallery__image {
   width: 280px;
   height: 398px;
-    margin-bottom: 10px;
-    border-radius: 5px
-};
-
-.gallery__title{
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.14;
-    margin-bottom: 5px;
-    text-transform: uppercase;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-.gallery__text{
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.14;
-    color: $orange-color;
-    
+.gallery__title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.14;
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
-.gallery__rating{
-    display: inline-block;
-    text-align: center;
-    width: 36px;
-    margin-left: 10px;
-    color: #fff;
-    background-color: $orange-color;
-
-    border-radius: 5px;
+.gallery__text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.14;
+  color: $orange-color;
 }
 
-@media screen and (min-width: 768px){
+.gallery__rating {
+  display: inline-block;
+  text-align: center;
+  width: 36px;
+  margin-left: 10px;
+  color: #fff;
+  background-color: $orange-color;
 
-  .main{
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
     padding-top: 60px;
     padding-bottom: 50px;
- }
+  }
 
   .gallery {
     display: flex;
@@ -75,15 +76,13 @@
     margin: 15px;
   }
 
-  .gallery__image{
-  width: 294px;
- 
-};
-};
+  .gallery__image {
+    width: 294px;
+  }
+}
 
-@media screen and (min-width: 1024px){
-
-  .main{
+@media screen and (min-width: 1024px) {
+  .main {
     padding-top: 60px;
     padding-bottom: 50px;
   }
@@ -99,8 +98,7 @@
     width: calc((100% - 3 * 30px) / 3);
   }
 
-  .gallery__image{
+  .gallery__image {
     width: 274px;
-   
-};
-};
+  }
+} ;
