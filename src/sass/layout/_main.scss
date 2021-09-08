@@ -1,13 +1,19 @@
 
 .main{
+    min-height: calc(100vh - 330px);
+    
+    @media screen and (max-width: 767px) {
+      min-height: calc(100vh - 307px);
+    }
+
     padding-top: 20px;
     padding-bottom: 40px;
 }
 
 .gallery__list{
-margin: 20px;
-transform: scale(1);
-transition: transform 150ms linear;
+  margin: 20px;
+  transform: scale(1);
+  transition: transform 150ms linear;
 
 
   &:hover{
@@ -18,7 +24,7 @@ transition: transform 150ms linear;
 
 .gallery__image{
     margin-bottom: 10px;
-border-radius: 5px
+    border-radius: 5px
 };
 
 .gallery__title{
@@ -26,7 +32,7 @@ border-radius: 5px
     font-size: 12px;
     line-height: 1.14;
     margin-bottom: 5px;
-text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .gallery__text{
