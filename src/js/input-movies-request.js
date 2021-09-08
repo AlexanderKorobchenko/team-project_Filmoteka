@@ -8,7 +8,7 @@ const finderQuery = new ApiService();
 const changeLoader = new Loader('.loader');
 const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
-const main = document.querySelector('.main > .container');
+// const main = document.querySelector('.main > .container');
 
 const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
 
@@ -65,10 +65,10 @@ function renderMoviesList(movie) {
 
 function renderError() {
   console.log("Ашибачка");
-  const error = '<h2>"Таких фильмов не найдено"</h2>';
+  const emptyLibrary = `<li class="error-item"><div class="error-img-notfound"></div></li>`;
   // error.textContent = "This is a heading";
   // galleryList.append(error);
-  main.innerHTML = error;
+  galleryList.innerHTML = emptyLibrary;
 
   return
 }
