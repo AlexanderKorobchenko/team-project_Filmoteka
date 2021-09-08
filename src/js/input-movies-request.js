@@ -1,16 +1,23 @@
 var debounce = require('lodash.debounce');
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
+import Loader from './loader.js';
 // import filterGenres from './filterGenres.js';
 import objectTransformations from './objectTransformations';
 // import menuTemplate from '../templates/genres-menu.hbs';
 
 const finderQuery = new ApiService();
+const changeLoader = new Loader('.loader');
 // finderQuery.searchRequest = searchQuery;
 // finderQuery.searchType = 1;
 
 const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
+const main = document.querySelector('.main > .container');
+console.log(main);
+const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
+
+console.log(currentPageArray);
 
 searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 
@@ -18,11 +25,15 @@ searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 
 function onSearchMovie(event) {
   event.preventDefault();
+  changeLoader.addLoader();
 
   const searchQuery = event.target.value;
 
   if (searchQuery === '') {
     console.log('ПУСТАЯ СТРОКА');
+    
+    renderMoviesList(currentPageArray);
+    changeLoader.clearLoader();
     // для возврата популярных фильмов
     return;
   }
@@ -35,7 +46,8 @@ function onSearchMovie(event) {
       // createGenresMenu();
       console.dir(results);
       if (results.length === 0) {
-        console.log('Error');
+        renderError();        
+        changeLoader.clearLoader();
         // функция которая очищает разметку и выводит картинку - ничегот не найдено в мэйне
         return;
       }
@@ -46,7 +58,9 @@ function onSearchMovie(event) {
       return objectTransformations(results);
     })
     .then(data => {
+      // changeLoader.clearLoader();
       renderMoviesList(data);
+      changeLoader.clearLoader();
       return data;
     })
     // .then(data => localStorage.setItem('Popular', JSON.stringify(data)))
@@ -62,10 +76,12 @@ function renderMoviesList(movie) {
   galleryList.innerHTML = markup;
 }
 
-// function createGenresMenu() {
-//   const genresArray = JSON.parse(localStorage.getItem('Genres'));
-//   genresArray.unshift({ id: '', name: 'none' });
-//   genresMenuRef.insertAdjacentHTML('beforeend', menuTemplate(genresArray));
-// }
+function renderError() {
+  console.log("Ашибачка");
+  const error = '<h2>"Таких фильмов не найдено"</h2>';
+  // error.textContent = "This is a heading";
+  // galleryList.append(error);
+  main.innerHTML = error;
+}
 
 // обсудить поиск по жанрам, функцию обработки результата для карточки, возврат популярного записи в локалсторидж, Пустая строка
