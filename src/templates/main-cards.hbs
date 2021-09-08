@@ -4,7 +4,7 @@
     {{#if poster_path}}
       <img
         src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
-        onerror="this.onerror=null;this.src='http://placehold.it/274x398/ece7e7/000000/&text=No+Picture'"
+        onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/AlexanderKorobchenko/team-project_Filmoteka/main/src/images/error/no-image-available.webp'"
         alt='{{title}}'
         title='{{title}}'
         class='gallery__image'
@@ -12,9 +12,10 @@
     {{/if}}
     {{#unless poster_path}}
       <img
-        class='gallery__image'
-        src='http://placehold.it/274x398/ece7e7/000000/&text=No+Picture'
+        class='gallery__image gallery__image-border'
+        src='https://raw.githubusercontent.com/AlexanderKorobchenko/team-project_Filmoteka/main/src/images/error/no-image-available.webp'
         alt='film photo'
+        style='border:2px solid #ff6b08'
       />
     {{/unless}}
     <h2 class='gallery__title'>{{title}}</h2>
