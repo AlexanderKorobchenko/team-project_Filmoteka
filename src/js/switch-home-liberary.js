@@ -9,7 +9,10 @@ const href = {
     backgroundHome: document.querySelector('.background'),
     backgroundLibrary: document.querySelector('.background-library'),
     galleryList: document.getElementById('gallery'),
+    pagination: document.querySelector('.pagination')
 }
+
+const emptyLibrary = `<li class="error-item"><div class="error-img-library"></div></li>`;
 
 // переключение между страницами
 href.logoBtn.addEventListener('click', onGoHome);
@@ -19,6 +22,7 @@ href.libraryBtn.addEventListener('click', onGoLibrary);
 function onGoHome(event) {
     event.preventDefault();
     clearGalleryList();
+    href.pagination.classList.remove('hidden');
 
     href.backgroundHome.classList.remove('hidden');
     href.backgroundLibrary.classList.add('hidden');
@@ -39,6 +43,7 @@ function onGoHome(event) {
 function onGoLibrary(event) {
     event.preventDefault();
     clearGalleryList();
+    href.pagination.classList.add('hidden');
 
     href.backgroundLibrary.classList.remove('hidden');
     href.backgroundHome.classList.add('hidden');
@@ -83,7 +88,8 @@ function showWatched() {
     const watchedArray = JSON.parse(localStorage.getItem('watched'));
 
     if (watchedArray.length === 0) {
-        console.log('watchedArray = 0');
+        href.galleryList.innerHTML = emptyLibrary;
+        //href.galleryList.removeEventListener('click', listener, false);
         return;
     };
 
@@ -97,7 +103,8 @@ function showQueue() {
     const watchedQueue = JSON.parse(localStorage.getItem('queue'));
 
     if (watchedQueue.length === 0) {
-        console.log('queueArray = 0');
+        href.galleryList.innerHTML = emptyLibrary;
+        //href.galleryList.removeEventListener('click', listener, false);
         return;
     };
 
