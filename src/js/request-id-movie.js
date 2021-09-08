@@ -19,16 +19,19 @@ function onSearchID(e) {
       refs.modalWindow.innerHTML = moviesCard(data);
       openModalWindow();
 
-      //вынести в новую функцию ниже
       const watchBtn = document.querySelector('.btn__watch');
+      const queueBtn = document.querySelector('.btn__queue');
       const popularFilm = JSON.parse(localStorage.getItem('Popular'));
+      const arrayPopFilm = localStorage.getItem('watched');
+      const arrayPopFilmQ = localStorage.getItem('queue');
 
+      //вынести в новую функцию ниже
+      // ================= начало работы кнопки Add to watched =================
       getIncludesFilms(e.target.offsetParent.id);
+       watchBtn.addEventListener('click', onWatch);
 
       function getIncludesFilms(id) {
         // console.log(id)
-        const arrayPopFilm = localStorage.getItem('watched');
-
         if (arrayPopFilm.includes(id)) {
           watchBtn.textContent = 'Delete from watched';
         };
@@ -39,15 +42,13 @@ function onSearchID(e) {
         // console.log(arrayPopFilm.includes(id))
       }
 
-      watchBtn.addEventListener('click', onWatch);
-
       function onWatch(event) {
-        // console.log(+event.target.dataset.id)
-
+        
         if (event.target.innerHTML === 'Delete from watched') {
-          // Функция удаления карточки с фильмомо из библиотеки
+          // Функция удаления карточки с фильмами из библиотеки
           const arrObjectWatch = JSON.parse(localStorage.getItem('watched'));
           let indx = null;
+
           for (let i = 0; i < arrObjectWatch.length; i += 1) {
             if (+arrObjectWatch[i].id === +event.target.dataset.id) {
               console.log('Совпало')
@@ -55,12 +56,12 @@ function onSearchID(e) {
               indx = i;
             }
           }
+          
           arrObjectWatch.splice(indx, 1);
           localStorage.setItem('watched', JSON.stringify(arrObjectWatch));
           watchBtn.textContent = 'Add to watched';
         } else {
           //if (event.target.innerHTML === 'Add to watched') {
-
           const filteredFilm = popularFilm.filter((film) => {
 
             if (+film.id === +event.target.dataset.id) {
@@ -78,6 +79,67 @@ function onSearchID(e) {
           watchBtn.textContent = 'Delete from watched';
         };
       }
+      // ================= конец работы кнопки watched =================
+
+      // ================= начало работы кнопки Add to queue =================
+      
+      getIncludesFilmsQ(e.target.offsetParent.id);
+      queueBtn.addEventListener('click', onQueue);
+
+      function getIncludesFilmsQ(id) {
+        // console.log(id)
+        if (arrayPopFilmQ.includes(id)) {
+          queueBtn.textContent = 'Delete from queue';
+        };
+
+        if (!arrayPopFilmQ.includes(id)) {
+          queueBtn.textContent = 'Add to queue';
+        }
+        // console.log(arrayPopFilm.includes(id))
+      }
+
+      function onQueue(event) {
+        // console.log(+event.target.dataset.id)
+        if (event.target.innerHTML === 'Delete from queue') {
+          // Функция удаления карточки с фильмами из библиотеки
+         
+          const arrObjectQueue = JSON.parse(localStorage.getItem('queue'));
+          let indx = null;
+
+          for (let i = 0; i < arrObjectQueue.length; i += 1) {
+            if (+arrObjectQueue[i].id === +event.target.dataset.id) {
+              console.log('Совпало')
+              console.log(arrObjectQueue[i])
+              indx = i;
+            }
+          }
+
+          arrObjectQueue.splice(indx, 1);
+          localStorage.setItem('queue', JSON.stringify(arrObjectQueue));
+          queueBtn.textContent = 'Add to queue';
+
+        } else {
+          //if (event.target.innerHTML === 'Add to watched') {
+          const filteredFilm = popularFilm.filter((film) => {
+
+            if (+film.id === +event.target.dataset.id) {
+              // console.log(film.id)
+              return film;
+            }
+          });
+
+          let a = [];
+          a = JSON.parse(localStorage.getItem('queue')) || [];
+          a.push(filteredFilm[0]);
+
+          console.log(a);
+          localStorage.setItem('queue', JSON.stringify(a));
+          queueBtn.textContent = 'Delete from queue';
+        };
+      }
+      // ================= конец работы кнопки  queue=================
+
+      
     })
     .catch(err => console.log(err));
 };
