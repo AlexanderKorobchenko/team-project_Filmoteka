@@ -1,6 +1,6 @@
 .pagination {
   padding-top: 40px;
-  padding-bottom: 40px;
+  // padding-bottom: 40px;
 
   &_container {
     list-style: none;
@@ -36,17 +36,23 @@
     box-shadow: 0px 4px 4px 0px #00000040;
   }
 
+  &_disabled {
+    pointer-events: none;
+  }
+
   &_left,
   &_right {
     background-color: #f7f7f7;
+  }
+
+  &_opacity {
+    opacity: 0;
   }
 }
 
 .pagination_item:hover {
   color: #ffffff;
   background-color: rgba(255, 107, 8, 1);
-  // border-radius: 5px;
-  border-radius: 50%;
   box-shadow: 0px 4px 4px 0px #00000040;
 
   -webkit-transform: scale(1.1);
