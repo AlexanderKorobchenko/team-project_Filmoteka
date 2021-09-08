@@ -8,7 +8,7 @@ const href = {
     library: document.getElementById('liberary'),
     backgroundHome: document.querySelector('.background'),
     backgroundLibrary: document.querySelector('.background-library'),
-    galeryList: document.getElementById('gallery'),
+    galleryList: document.getElementById('gallery'),
 }
 
 // переключение между страницами
@@ -18,6 +18,7 @@ href.libraryBtn.addEventListener('click', onGoLibrary);
 
 function onGoHome(event) {
     event.preventDefault();
+    clearGalleryList();
 
     href.backgroundHome.classList.remove('hidden');
     href.backgroundLibrary.classList.add('hidden');
@@ -32,11 +33,12 @@ function onGoHome(event) {
     const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
     //console.log(currentPageArray)
     renderMoviesList(currentPageArray);
-    console.log('рендер разметки с LocalStorage');
+    //console.log('рендер разметки с LocalStorage');
 };
 
 function onGoLibrary(event) {
     event.preventDefault();
+    clearGalleryList();
 
     href.backgroundLibrary.classList.remove('hidden');
     href.backgroundHome.classList.add('hidden');
@@ -63,11 +65,13 @@ href.library.firstElementChild.addEventListener('click', onClickWathed);
 href.library.lastElementChild.addEventListener('click', onClickQueue);
 
 function onClickWathed() {
+    clearGalleryList();
     localStorage.setItem('checkBoxLibrary', '');
     showWatched();
 };
 
 function onClickQueue() {
+    clearGalleryList();
     localStorage.setItem('checkBoxLibrary', 'queue');
     showQueue();
 };
@@ -100,7 +104,11 @@ function showQueue() {
     renderMoviesList(watchedQueue);
 };
 
-// создание разметки
+// работа с разметкой
 function renderMoviesList(movie) {
-    href.galeryList.innerHTML = moviesList(movie);
+    href.galleryList.innerHTML = moviesList(movie);
 };
+
+function clearGalleryList() {
+    href.galleryList.innerHTML = '';
+}
