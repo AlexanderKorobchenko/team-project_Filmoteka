@@ -1,0 +1,48 @@
+<div class="backdrop">
+  <div class="modal-window">
+    <div >
+    {{#each this}}
+      <ul class='team__card' id='{{name}}'>
+        <li>         
+          <img src="{{photo}}" 
+          alt="{{name}}"
+          class='teamate_photo'
+          />
+        </li>
+        <li class='teamate_name'>
+          <span>{{name}}</span>
+        </li>
+        <li class='teamate_links'>
+          <li>
+              <a class="person-links"  href="{{title}}">
+                <svg class="person-svg">
+                <use href="./images/icon/sprite.svg#team-telegram"></use>
+              </svg>
+            </a>
+          </li>
+                <li>
+              <a class="person-links"  href="{{title}}">
+                <svg class="person-svg">
+                <use href="../images/sprite.svg#team-github: "></use>
+              </svg>
+            </a>
+          </li>
+                <li>
+              <a class="person-links"  href="{{title}}">
+                <svg class="person-svg">
+                <use href="./images/icon/sprite.svg#team-linkedin"></use>
+                </svg>
+            </a>
+          </li>
+        </li>
+
+      </ul>
+    {{/each}}
+    </div>
+    <button type="close-btn" class="close__button" data-action="close-modal">
+      <svg class="person-svg">
+      <use href="./images/icon/sprite.svg#team-linkedin"></use>
+      </svg>
+    </button>
+  </div>
+</div>

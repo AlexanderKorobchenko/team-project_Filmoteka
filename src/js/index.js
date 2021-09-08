@@ -7,3 +7,4 @@ import './genres-menu';
 import './gradient-granim.js';
 import './input-movies-request';
 import './switch-home-liberary';
+import './team-modal';
