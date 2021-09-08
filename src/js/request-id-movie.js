@@ -61,7 +61,7 @@ function onSearchID(e) {
           localStorage.setItem('watched', JSON.stringify(arrObjectWatch));
           watchBtn.textContent = 'Add to watched';
         } else {
-          //if (event.target.innerHTML === 'Add to watched') {
+
           const filteredFilm = popularFilm.filter((film) => {
 
             if (+film.id === +event.target.dataset.id) {
