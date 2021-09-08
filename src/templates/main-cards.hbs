@@ -1,11 +1,22 @@
 {{#each this}}
   <li class='gallery__list' id='{{id}}'>
 
-    <img
-      src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
-      alt='{{title}}'
-      class='gallery__image'
-    />
+    {{#if poster_path}}
+      <img
+        src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
+        onerror="this.onerror=null;this.src='http://placehold.it/274x398/ece7e7/000000/&text=No Picture'"
+        alt='{{title}}'
+        title='{{title}}'
+        class='gallery__image'
+      />
+    {{/if}}
+    {{#unless poster_path}}
+      <img
+        class='gallery__image'
+        src='http://placehold.it/274x398/ece7e7/000000/&text=No Picture'
+        alt='film photo'
+      />
+    {{/unless}}
     <h2 class='gallery__title'>{{title}}</h2>
     <p class='gallery__text'>{{genres}}
       |
