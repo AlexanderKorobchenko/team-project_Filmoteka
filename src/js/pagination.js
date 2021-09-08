@@ -162,7 +162,7 @@ function onDeactivateOpacitybutton(page) {           // убрать opacity к�
 
 pagesEl.forEach(function(page) {     
     page.addEventListener('click', function () { onCurrentPage(this) }); //навигация по клику
-    page.addEventListener('click', onChangeNumberPage);                   //навигация стрелками
+    // page.addEventListener('click', onChangeNumberPage);                   //навигация стрелками
     page.addEventListener('click', function () {onSurfNumberPage(this) }); //навигация со смещением > 10 pages
 });
 
@@ -447,17 +447,17 @@ function onchangeCurrentPage(page) {   // фиксирует currentPage
 
 
  //ЕЕ НЕ АКТИВНО  стрелками передвижение
-pagesEl.forEach(function(page) {     
+// pagesEl.forEach(function(page) {     
     
-    page.addEventListener('click', function () {onGoByArrow(this) });                   //навигация стрелками
+//     page.addEventListener('click', function () {onGoByArrow(this) });                   //навигация стрелками
    
-});
+// });
 
-function onGoByArrow(page) {         //ЕЕ НЕ АКТИВНО  стрелками передвижение
+// function onGoByArrow(page) {         //ЕЕ НЕ АКТИВНО  стрелками передвижение
     
     
-    onDisabledButton(refs.toRightEl);
-    onDisabledButton(refs.toLeftEl);
+//     onDisabledButton(refs.toRightEl);
+//     onDisabledButton(refs.toLeftEl);
     
     
-}
+// }
