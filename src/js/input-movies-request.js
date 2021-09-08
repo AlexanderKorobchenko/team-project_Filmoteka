@@ -1,28 +1,28 @@
 var debounce = require('lodash.debounce');
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
-// import filterGenres from './filterGenres.js';
+import Loader from './loader.js';
 import objectTransformations from './objectTransformations';
-// import menuTemplate from '../templates/genres-menu.hbs';
 
 const finderQuery = new ApiService();
-// finderQuery.searchRequest = searchQuery;
-// finderQuery.searchType = 1;
-
+const changeLoader = new Loader('.loader');
 const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
+// const main = document.querySelector('.main > .container');
+
+const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
 
 searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 
-// console.log(finderQuery);
-
 function onSearchMovie(event) {
   event.preventDefault();
+  changeLoader.addLoader();
 
   const searchQuery = event.target.value;
 
   if (searchQuery === '') {
-    console.log('ПУСТАЯ СТРОКА');
+    renderMoviesList(currentPageArray);
+    changeLoader.clearLoader();
     // для возврата популярных фильмов
     return;
   }
@@ -32,25 +32,26 @@ function onSearchMovie(event) {
   finderQuery
     .searchMovies()
     .then(({ results }) => {
-      // createGenresMenu();
-      console.dir(results);
       if (results.length === 0) {
-        console.log('Error');
+        renderError();        
+        changeLoader.clearLoader();
         // функция которая очищает разметку и выводит картинку - ничегот не найдено в мэйне
         return;
       }
-
-      // return results.map(result => ({
-      //     ...result,
-      // }))
+      changeLoader.clearLoader();
       return objectTransformations(results);
     })
-    .then(data => {
+    .then(data => {      
       renderMoviesList(data);
+      changeLoader.clearLoader();
       return data;
     })
     // .then(data => localStorage.setItem('Popular', JSON.stringify(data)))
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      changeLoader.clearLoader();
+    });
+  // changeLoader.clearLoader();
 }
 
 // function clearGalleryContainer() {
@@ -62,10 +63,14 @@ function renderMoviesList(movie) {
   galleryList.innerHTML = markup;
 }
 
-// function createGenresMenu() {
-//   const genresArray = JSON.parse(localStorage.getItem('Genres'));
-//   genresArray.unshift({ id: '', name: 'none' });
-//   genresMenuRef.insertAdjacentHTML('beforeend', menuTemplate(genresArray));
-// }
+function renderError() {
+  console.log("Ашибачка");
+  const emptyLibrary = `<li class="error-item"><div class="error-img-notfound"></div></li>`;
+  // error.textContent = "This is a heading";
+  // galleryList.append(error);
+  galleryList.innerHTML = emptyLibrary;
+
+  return
+}
 
 // обсудить поиск по жанрам, функцию обработки результата для карточки, возврат популярного записи в локалсторидж, Пустая строка

@@ -1,0 +1,30 @@
+.error-item {
+  display: block;
+  margin: auto;
+}
+
+.error-img-library {
+  width: 348px;
+  height: 228px;
+  display: block;
+  // background: url(../images/error/empty-library.webp);
+  background-size: cover;
+
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 184px;
+  }
+}
+
+.error-img-notfound {
+  width: 348px;
+  height: 228px;
+  display: block;
+  background: url(../images/error/not-found.webp);
+  background-size: cover;
+
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 184px;
+  }
+}
