@@ -14,18 +14,21 @@ export default class ApiService {
       `https://api.themoviedb.org/3/trending/movie/day?api_key=${this.key}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/search/movie?api_key=${this.key}&language=en-US&query=${this.query}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/movie/${this.query}?api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
-      `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&with_genres=${this.query}`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&with_genres=${this.query}&page=${this.page}`,
     ];
   }
 
   searchMovies() {
     let url = this.moviesUrls[this.searchIndex];
+    console.log(url);
     return fetch(url)
       .then(response => response.json())
       .then(res => {
+        if(res.total_pages) localStorage.setItem('TotalPagesInLastSearchResult', JSON.stringify(res.total_pages));
+        if(this.searchIndex!==2) localStorage.setItem('LastSearchIndex', this.searchIndex);
         this.totalResultsFound = res.total_results; //возможно, понадобится для пагинации
         this.totalPagesFound = res.total_pages;
-        //console.log(res);
+        console.log(res);
         return res;
       }).catch(err => console.log(err));
   }
