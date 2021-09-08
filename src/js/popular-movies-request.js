@@ -1,7 +1,11 @@
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
-import filterGenres from './filterGenres.js';
 import menuTemplate from '../templates/genres-menu.hbs';
+import objectTransformations from './objectTransformations.js';
+import { onWritesPageNumbers } from './pagination';
+import Loader from './loader.js';
+
+const changeLoader = new Loader('.loader');
 
 const finder = new ApiService();
 finder.searchType = 0;
@@ -12,6 +16,8 @@ const galleryList = document.getElementById('gallery');
 const genresMenuRef = document.querySelector('#genres_menu');
 
 function popularMovies() {
+  changeLoader.addLoader();
+
   clearGalleryContainer();
 
   finder.searchReset();
@@ -19,19 +25,18 @@ function popularMovies() {
   finder
     .searchMovies()
     .then(({ results }) => {
-      const genres = JSON.parse(localStorage.getItem('Genres'));
       createGenresMenu();
-      return results.map(result => ({
-        ...result,
-        release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
-        genres: filterGenres(genres, result),
-      }));
-    }) //-------------------modified  by Vlad Otrishko
+
+      return objectTransformations(results);
+    })
     .then(data => {
       renderMoviesList(data);
+      changeLoader.clearLoader();
+      let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
+      onWritesPageNumbers();
       return data;
     })
-    .then(data => localStorage.setItem('Popular', JSON.stringify(data))) //-----modified END
+    .then(data => localStorage.setItem('Popular', JSON.stringify(data)))
     .catch(err => console.log(err));
 }
 
@@ -47,8 +52,6 @@ function renderMoviesList(movie) {
   const markup = moviesList(movie);
   galleryList.innerHTML = markup;
 }
-
-// createGenresMenu();
 
 function createGenresMenu() {
   const genresArray = JSON.parse(localStorage.getItem('Genres'));

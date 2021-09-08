@@ -1,7 +1,6 @@
 .background {
   position: absolute;
   z-index: -200;
-  // width: 100vw;
   width: 100%;
   height: 230px;
   background-color: #2a2a2a;
@@ -22,7 +21,6 @@
   }
 
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-    padding: 45px 60px 20px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
       url('../images/webp/header-background-tablet.webp');
   }
@@ -36,7 +34,6 @@
     }
   }
   @media screen and (min-width: $desktop) {
-    padding-top: 40px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
       url('../images/webp/header-background-desktop.webp');
   }
@@ -54,7 +51,6 @@
 .background-library {
   position: absolute;
   z-index: -200;
-  // width: 100vw;
   width: 100%;
   height: 230px;
 
@@ -76,7 +72,6 @@
   }
 
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-    padding: 45px 60px 20px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
       url('../images/webp/header-library-background-tablet.webp');
   }
@@ -92,7 +87,6 @@
   }
 
   @media screen and (min-width: $desktop) {
-    padding-top: 40px;
     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
       url('../images/webp/header-library-background-desktop.webp');
   }
@@ -113,108 +107,39 @@
   display: block;
   margin: 0 auto;
   width: 100%;
-  padding: 15px 0px;
   height: 230px;
 
-  font-family: $white-color;
-  font-weight: 500;
-  color: $white-color;
+  @media screen and (min-width: 320px) {
+    padding-top: 46px;
+  }
 
-  // background-color: #2a2a2a;
-  // background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //   url('../images/header-background-mobile-1x.jpg');
-  // background-position: top;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-
-  // @media (min-device-pixel-ratio: 2),
-  //   (-webkit-min-device-pixel-ratio: 2),
-  //   (min-resolution: 192dpi),
-  //   (min-resolution: 2dppx) {
-  //   .header {
-  //     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //       url('../images/header-background-mobile@2x.jpg');
-  //   }
-  // }
-
-  // @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-  //   padding: 45px 60px 20px;
-  //   background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //     url('../images/header-background-tablet-1x.jpg');
-  // }
-  // @media (min-device-pixel-ratio: 2),
-  //   (-webkit-min-device-pixel-ratio: 2),
-  //   (min-resolution: 192dpi),
-  //   (min-resolution: 2dppx) {
-  //   .header {
-  //     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //       url('../images/header-background-tablet@2x.jpg');
-  //   }
-  // }
-
-  // @media screen and (min-width: $desktop) {
-  //   padding-top: 40px;
-  //   background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //     url('../images/header-background-desktop-1x.jpg');
-  // }
-  // @media (min-device-pixel-ratio: 2),
-  //   (-webkit-min-device-pixel-ratio: 2),
-  //   (min-resolution: 192dpi),
-  //   (min-resolution: 2dppx) {
-  //   .header {
-  //     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-  //       url('../images/header-background-desktop@2x.jpg');
-  //   }
-  // }
+  @media screen and (min-width: 768px) {
+    padding-top: 41px;
+  }
 }
 
 .navigation-list {
   display: flex;
-  //   justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 37px;
-
-  @media screen and (max-width: $to-tablet) {
-    margin-bottom: 45px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    padding: 0;
-  }
 }
 
 .logo {
   display: flex;
-  //   align-items: center;
+  align-items: center;
   align-self: flex-end;
-
-  @media screen and (max-width: $to-tablet) {
-    margin-right: 112px;
-  }
-
-  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-    margin-right: 303px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    margin-right: 564px;
-  }
+  cursor: pointer;
 }
 
 .logo__icon {
   width: 24px;
   height: 24px;
   margin-right: 10px;
-
-  @media screen and (min-width: $tablet) {
-    margin-right: 10px;
-  }
 }
 
 .logo__text {
   font-size: 30px;
-  line-height: 1.72;
+  line-height: 1.17;
   font-weight: 500;
   color: $white-color;
 
@@ -229,29 +154,48 @@
 
 .navigation__btn {
   position: relative;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.17;
+  color: $white-color;
+  text-transform: uppercase;
 
   &:not(:last-child) {
-    margin-right: 39px;
+    margin-right: 38px;
+  }
+}
+
+.navigation__btn-current {
+  &::after {
+     width: 100%;
+     height: 3px;
+     content: '';
+    position: absolute;
+    bottom: 15;
+     display: block;
+     background-color: $orange-color;    
   }
 }
 
 .search {
-  display: flex;
-  position: relative;
-
   width: 280px;
-  margin: 0 auto 22px;
-
+  margin: 38px auto 0px;
+  position: relative;
+  display: flex;
   justify-content: center;
-  //background-color: black;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
 }
 
 .search__input {
   width: 100%;
-  //   width: 280px;
-  height: 30px;
-  padding: 4px 0;
-
+  padding: 0 0 4px;
+  
   border-top: none;
   border-right: none;
   border-left: none;
@@ -277,95 +221,68 @@
   transition-property: border-bottom;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-  @media screen and (min-width: $tablet) {
-    width: 336px;
-  }
-  // background-color: gray;
 }
 
 .search__icon {
   width: 12px;
   height: 12px;
   position: absolute;
-  top: 4px;
-  right: 4px;
-  position: absolute;
-  right: 0;
-  bottom: 2px;
+  bottom: 6px;
+  right: 0px;
+  
+/*  не понятно, что это?
   stroke: $white-color;
 
   &:hover,
   &:focus,
   &:active {
     stroke: $orange-color;
-    cursor: pointer;
   }
 
   transition-property: stroke;
   transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
 }
 
 .liberary {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
 }
 
-// .header-liberary {
-//   background-color: #2a2a2a;
-//   background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//     url('../images/header-library-background-mobile-1x.jpg');
-//   background-position: top;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-
-//   @media (min-device-pixel-ratio: 2),
-//     (-webkit-min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     .header {
-//       background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//         url('../images/header-library-background-mobile@2x.jpg');
-//     }
-//   }
-
-//   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-//     padding: 45px 60px 20px;
-//     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//       url('../images/header-library-background-tablet-1x.jpg');
-//   }
-//   @media (min-device-pixel-ratio: 2),
-//     (-webkit-min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     .header {
-//       background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//         url('../images/header-library-background-tablet@2x.jpg');
-//     }
-//   }
-
-//   @media screen and (min-width: $desktop) {
-//     padding-top: 40px;
-//     background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//       url('../images/header-library-background-desktop-1x.jpg');
-//   }
-//   @media (min-device-pixel-ratio: 2),
-//     (-webkit-min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     .header {
-//       background-image: linear-gradient(to right, $header-gradient-color, $header-gradient-color),
-//         url('../images/header-library-background-desktop@2x.jpg');
-//     }
-//   }
-// }
-
 .liberary__btn {
-  border: 1px solid black;
-  color: black;
-  background-color: $white-color;
+  min-width: 136px;
+  padding: 14px 38px 12px;  
+  border: 1px solid $white-color;
+  border-radius: 5px;
+  color: $white-color;
+  background-color: transparent;
+  cursor: pointer;
+  
+  font-weight: 500;
+  line-height: 1.33;
+  text-transform: uppercase;
 
+  @media screen and (min-width: 768px) {
+    min-width: 130px;
+    padding: 14px 36px 12px;  
+  }
+
+  &:not(:last-child) {
+    margin-right: 18px;
+
+    @media screen and (min-width: 768px) {
+      margin-right: 15px;
+    }
+  }
+}
+
+.liberary__btn-current {
+  border: 1px solid $active-button-color;
+  background-color: $active-button-color;
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
+  /*
   &:hover,
   :focus,
   :active {
@@ -414,9 +331,10 @@
       background: $active-button-color;
       box-shadow: (0px 8px 43px rgba(255, 107, 1, 0.6));
     }
-  }
-}
+  }*/
 
+
+/*
 .header__warning {
   width: 280px;
   margin: 0 auto;
@@ -424,4 +342,4 @@
   line-height: 1.17;
   font-weight: 400;
   color: $red-color;
-}
+}*/

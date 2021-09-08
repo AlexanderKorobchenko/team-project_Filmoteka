@@ -1,4 +1,4 @@
-import Granim from 'Granim';
+import Granim from 'granim';
 
 const granimInstanceHeder = new Granim({
   element: '#canvas-image-blending',

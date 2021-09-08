@@ -1,7 +1,8 @@
 import menuTemplate from '../templates/genres-menu.hbs';
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
-import filterGenres from './filterGenres.js';
+import objectTransformations from './objectTransformations.js';
+import { onWritesPageNumbers } from './pagination';
 
 const finder = new ApiService();
 
@@ -35,15 +36,12 @@ function onInput(event) {
   finder
     .searchMovies() //-------------------modified  by Oleg Teslenko
     .then(({ results }) => {
-      const genres = JSON.parse(localStorage.getItem('Genres'));
-      return results.map(result => ({
-        ...result,
-        release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
-        genres: filterGenres(genres, result),
-      }));
+      return objectTransformations(results);
     })
     .then(data => {
       renderMoviesList(data);
+let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
+onWritesPageNumbers();
     })
     .catch(err => console.log(err));
   //-----modified END
@@ -52,4 +50,8 @@ function onInput(event) {
 function renderMoviesList(movie) {
   const markup = moviesList(movie);
   galleryList.innerHTML = markup;
+}
+
+export function trial() {
+  console.log('GGHHIUHGUFTYDRDRTD');
 }

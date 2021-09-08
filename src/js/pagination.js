@@ -437,8 +437,6 @@ function endButtonsOnSurf() {                   //две последние пр
     pagesEl[clearButton].textContent = pagesTotal;
 }
 
-
-
 function onchangeCurrentPage(page) {   // фиксирует currentPage
   
     currentPage.classList.remove('pagination_current');
@@ -448,11 +446,18 @@ function onchangeCurrentPage(page) {   // фиксирует currentPage
 
 
 
-function onChangeNumberPage() {         //ЕЕ НЕ АКТИВНО  стрелками передвижение
+ //ЕЕ НЕ АКТИВНО  стрелками передвижение
+pagesEl.forEach(function(page) {     
+    
+    page.addEventListener('click', function () {onGoByArrow(this) });                   //навигация стрелками
+   
+});
+
+function onGoByArrow(page) {         //ЕЕ НЕ АКТИВНО  стрелками передвижение
     
     
     onDisabledButton(refs.toRightEl);
-    onDisabledButton(refs.toLeftEl); 
+    onDisabledButton(refs.toLeftEl);
+    
     
 }
-
