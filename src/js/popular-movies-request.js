@@ -3,6 +3,7 @@ import ApiService from './apiService.js';
 // import filterGenres from './filterGenres.js';
 import menuTemplate from '../templates/genres-menu.hbs';
 import objectTransformations from './objectTransformations.js';
+import { onWritesPageNumbers } from './pagination';
 
 const finder = new ApiService();
 finder.searchType = 0;
@@ -26,6 +27,8 @@ function popularMovies() {
     })
     .then(data => {
       renderMoviesList(data);
+let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
+      onWritesPageNumbers();
       return data;
     })
     .then(data => localStorage.setItem('Popular', JSON.stringify(data)))

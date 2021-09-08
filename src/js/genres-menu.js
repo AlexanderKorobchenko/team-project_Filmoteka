@@ -2,6 +2,7 @@ import menuTemplate from '../templates/genres-menu.hbs';
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import objectTransformations from './objectTransformations.js';
+import { onWritesPageNumbers } from './pagination';
 
 const finder = new ApiService();
 
@@ -39,6 +40,8 @@ function onInput(event) {
     })
     .then(data => {
       renderMoviesList(data);
+let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
+onWritesPageNumbers();
     })
     .catch(err => console.log(err));
   //-----modified END
@@ -47,4 +50,8 @@ function onInput(event) {
 function renderMoviesList(movie) {
   const markup = moviesList(movie);
   galleryList.innerHTML = markup;
+}
+
+export function trial() {
+  console.log('GGHHIUHGUFTYDRDRTD');
 }
