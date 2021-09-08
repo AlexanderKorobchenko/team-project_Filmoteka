@@ -23,6 +23,8 @@
 }
 
 .gallery__image{
+  width: 280px;
+  height: 398px;
     margin-bottom: 10px;
     border-radius: 5px
 };
@@ -72,6 +74,11 @@
 
     margin: 15px;
   }
+
+  .gallery__image{
+  width: 294px;
+ 
+};
 };
 
 @media screen and (min-width: 1024px){
@@ -91,4 +98,9 @@
     margin: 15px;
     width: calc((100% - 3 * 30px) / 3);
   }
+
+  .gallery__image{
+    width: 274px;
+   
+};
 };
