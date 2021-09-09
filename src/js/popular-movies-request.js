@@ -2,7 +2,6 @@ import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import menuTemplate from '../templates/genres-menu.hbs';
 import objectTransformations from './objectTransformations.js';
-import { onWritesPageNumbers } from './pagination';
 import Loader from './loader.js';
 
 const changeLoader = new Loader('.loader');
@@ -15,7 +14,7 @@ finder.searchGenres();
 const galleryList = document.getElementById('gallery');
 const genresMenuRef = document.querySelector('#genres_menu');
 
-function popularMovies() {
+export function popularMovies() {
   changeLoader.addLoader();
 
   clearGalleryContainer();
@@ -33,7 +32,6 @@ function popularMovies() {
       renderMoviesList(data);
       changeLoader.clearLoader();
       let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
-      onWritesPageNumbers();
       return data;
     })
     .then(data => {

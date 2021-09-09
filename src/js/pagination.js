@@ -53,7 +53,7 @@ function onRemoveButton() {
 
 let pagesEl = document.querySelectorAll('.pagination_item'); //кнопки пагинации
 
-let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
+let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult') || 1000;
     // JSON.parse(localStorage.getItem('LastSearchResults')); // total.pages from API
 
 let clearButton = pagesEl.length - 2;// 9 кнопок для записи страниц
@@ -107,7 +107,8 @@ function getsPageNumber() {// получает номер страницы дл�
 
 function onPagination(e) {
   // finder.searchReset();
-  finder.searchType = localStorage.getItem('LastSearchIndex');
+    finder.searchType = localStorage.getItem('LastSearchIndex');
+    finder.searchRequest = localStorage.getItem('LastQuery');
   pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
       onWritesPageNumbers();
 

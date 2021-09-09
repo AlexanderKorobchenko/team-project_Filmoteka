@@ -2,7 +2,7 @@ import menuTemplate from '../templates/genres-menu.hbs';
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import objectTransformations from './objectTransformations.js';
-import { onWritesPageNumbers } from './pagination';
+// import { popularMovies } from './popular-movies-request';
 
 const finder = new ApiService();
 
@@ -28,6 +28,12 @@ genresMenuRef.addEventListener('input', onInput);
 function onInput(event) {
   console.dir(genresMenuRef);
   if (event.target[event.target.selectedIndex].value === '') {
+    localStorage.removeItem('LastQuery');
+    localStorage.removeItem('LastSearchResults');
+    localStorage.removeItem('LastSearchIndex');
+    finder.searchReset();
+      finder.searchMovies();
+    // popularMovies();
     renderMoviesList(JSON.parse(localStorage.getItem('Popular')));
     return;
   }
@@ -52,6 +58,3 @@ function renderMoviesList(movie) {
   galleryList.innerHTML = markup;
 }
 
-export function trial() {
-  console.log('GGHHIUHGUFTYDRDRTD');
-}

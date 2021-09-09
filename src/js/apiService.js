@@ -25,7 +25,8 @@ export default class ApiService {
       .then(response => response.json())
       .then(res => {
         if(res.total_pages) localStorage.setItem('TotalPagesInLastSearchResult', JSON.stringify(res.total_pages));
-        if(this.searchIndex!==2) localStorage.setItem('LastSearchIndex', this.searchIndex);
+        if (this.searchIndex !== 2) localStorage.setItem('LastSearchIndex', this.searchIndex);
+        localStorage.setItem('LastQuery', this.query);
         this.totalResultsFound = res.total_results; //возможно, понадобится для пагинации
         this.totalPagesFound = res.total_pages;
         console.log(res);
