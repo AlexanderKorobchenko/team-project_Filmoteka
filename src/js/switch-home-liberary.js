@@ -9,10 +9,11 @@ const href = {
     backgroundHome: document.querySelector('.background'),
     backgroundLibrary: document.querySelector('.background-library'),
     galleryList: document.getElementById('gallery'),
-    pagination: document.querySelector('.pagination')
+    pagination: document.querySelector('.pagination'),
+    mainSection: document.querySelector('.main')
 }
 
-const emptyLibrary = `<li class="error-item"><div class="error-img-library"></div></li>`;
+const emptyLibrary = `<div class="error-img-library"></div>`;
 
 // переключение между страницами
 href.logoBtn.addEventListener('click', onGoHome);
@@ -84,30 +85,32 @@ function onClickQueue() {
 function showWatched() {
     href.library.firstElementChild.classList.add('liberary__btn-current');
     href.library.lastElementChild.classList.remove('liberary__btn-current');
-    //рендер библиотеки watched;
+
     const watchedArray = JSON.parse(localStorage.getItem('watched'));
 
+    // если библиотека пустая
     if (watchedArray.length === 0) {
-        href.galleryList.innerHTML = emptyLibrary;
-        //href.galleryList.removeEventListener('click', listener, false);
+        href.mainSection.firstElementChild.innerHTML = emptyLibrary;
         return;
     };
 
+    //рендер библиотеки watched;
     renderMoviesList(watchedArray);
 };
 
 function showQueue() {
     href.library.lastElementChild.classList.add('liberary__btn-current');
     href.library.firstElementChild.classList.remove('liberary__btn-current');
-    //рендер библиотеки Queue;
+
     const watchedQueue = JSON.parse(localStorage.getItem('queue'));
 
+    // если библиотека пустая
     if (watchedQueue.length === 0) {
-        href.galleryList.innerHTML = emptyLibrary;
-        //href.galleryList.removeEventListener('click', listener, false);
+        href.mainSection.innerHTML = emptyLibrary;
         return;
     };
 
+    //рендер библиотеки Queue;
     renderMoviesList(watchedQueue);
 };
 

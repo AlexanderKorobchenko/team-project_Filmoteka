@@ -71,7 +71,7 @@ const data = [
   //   linkedin: "https://www.linkedin.com/",
   // },
 ]
-console.log(data[0].photo)
+//console.log(data[0].photo)
 
 
 import teamHbs from '../templates/modal-team.hbs';
@@ -79,9 +79,9 @@ const refs = {
   teamBtn: document.getElementById('open_taem'),
   modalDiv: document.getElementById('modal-window')
 }
-refs.teamBtn.addEventListener('click', openTeamModal)
 
-6
+//refs.teamBtn.addEventListener('click', openTeamModal)
+
 
 
 function openTeamModal() {
