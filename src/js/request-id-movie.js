@@ -1,10 +1,14 @@
 import moviesCard from '../templates/test.hbs';
 import ApiService from './apiService.js';
+import mainCards from '../templates/main-cards.hbs'
 
 const refs = {
   galleryList: document.getElementById('gallery'),
   modalWindow: document.querySelector('#modal-window'),
+  btnLibrary: document.getElementById('btn-library'),
+  library: document.getElementById('liberary'),
 }
+
 
 const finder = new ApiService();
 
@@ -24,6 +28,8 @@ function onSearchID(e) {
       const popularFilm = JSON.parse(localStorage.getItem('Popular'));
       const arrayPopFilm = localStorage.getItem('watched');
       const arrayPopFilmQ = localStorage.getItem('queue');
+      const currentWatch = refs.library.firstElementChild;
+      const currentQueue = refs.library.lastElementChild;
 
       //вынести в новую функцию ниже
       // ================= начало работы кнопки Add to watched =================
@@ -35,11 +41,9 @@ function onSearchID(e) {
         if (arrayPopFilm.includes(id)) {
           watchBtn.textContent = 'Delete from watched';
         };
-
         if (!arrayPopFilm.includes(id)) {
           watchBtn.textContent = 'Add to watched';
         }
-        // console.log(arrayPopFilm.includes(id))
       }
 
       function onWatch(event) {
@@ -70,7 +74,7 @@ function onSearchID(e) {
             }
           });
 
-          let a = [];
+          var a = [];
           a = JSON.parse(localStorage.getItem('watched')) || [];
           a.push(filteredFilm[0]);
 
@@ -78,16 +82,21 @@ function onSearchID(e) {
           localStorage.setItem('watched', JSON.stringify(a));
           watchBtn.textContent = 'Delete from watched';
         };
+
+        if (refs.btnLibrary.classList.contains('navigation__btn-current') && currentWatch.classList.contains('liberary__btn-current')) {
+          
+          renderCardsList(JSON.parse(localStorage.getItem('watched')))
+        }
+        
       }
       // ================= конец работы кнопки watched =================
 
-      // ================= начало работы кнопки Add to queue =================
-      
+      // ================= начало работы кнопки Add to queue ================= 
       getIncludesFilmsQ(e.target.offsetParent.id);
       queueBtn.addEventListener('click', onQueue);
 
       function getIncludesFilmsQ(id) {
-        // console.log(id)
+    
         if (arrayPopFilmQ.includes(id)) {
           queueBtn.textContent = 'Delete from queue';
         };
@@ -95,11 +104,10 @@ function onSearchID(e) {
         if (!arrayPopFilmQ.includes(id)) {
           queueBtn.textContent = 'Add to queue';
         }
-        // console.log(arrayPopFilm.includes(id))
       }
 
       function onQueue(event) {
-        // console.log(+event.target.dataset.id)
+       
         if (event.target.innerHTML === 'Delete from queue') {
           // Функция удаления карточки с фильмами из библиотеки
          
@@ -119,7 +127,7 @@ function onSearchID(e) {
           queueBtn.textContent = 'Add to queue';
 
         } else {
-          //if (event.target.innerHTML === 'Add to watched') {
+          
           const filteredFilm = popularFilm.filter((film) => {
 
             if (+film.id === +event.target.dataset.id) {
@@ -136,7 +144,12 @@ function onSearchID(e) {
           localStorage.setItem('queue', JSON.stringify(a));
           queueBtn.textContent = 'Delete from queue';
         };
+
+        if (refs.btnLibrary.classList.contains('navigation__btn-current') && currentQueue.classList.contains('liberary__btn-current')) {
+          
+          renderCardsList(JSON.parse(localStorage.getItem('queue'))) 
       }
+  } 
       // ================= конец работы кнопки  queue=================
 
       
@@ -172,3 +185,8 @@ function closeModalWindow() {
   document.querySelector('.image').src = '';
 };
 // ================= конец открытие/закрытие модалки =================
+
+
+function renderCardsList(movie) {
+  refs.galleryList.innerHTML = mainCards(movie);
+};
