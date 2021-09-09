@@ -9,6 +9,7 @@ const changeLoader = new Loader('.loader');
 const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
 const pagination = document.querySelector('.pagination');
+const errors = document.getElementById('errors');
 
 const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
 
@@ -17,7 +18,7 @@ searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 function onSearchMovie(event) {
   event.preventDefault();
   changeLoader.addLoader();
-
+  errors.firstElementChild.classList.add('hidden');
   pagination.classList.remove('hidden');
 
   const searchQuery = event.target.value;
@@ -39,9 +40,8 @@ function onSearchMovie(event) {
     .then(({ results }) => {
       // Если ничего не найдено
       if (results.length === 0) {
-        const notFound = `<li class="error-item"><div class="error-img-notfound"></div></li>`;
-        galleryList.innerHTML = notFound;
-
+        clearGalleryContainer();
+        errors.firstElementChild.classList.remove('hidden');
         pagination.classList.add('hidden');
         changeLoader.clearLoader();
         return;
