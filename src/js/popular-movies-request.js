@@ -36,7 +36,10 @@ function popularMovies() {
       onWritesPageNumbers();
       return data;
     })
-    .then(data => localStorage.setItem('Popular', JSON.stringify(data)))
+    .then(data => {
+      localStorage.setItem('Popular', JSON.stringify(data));
+      localStorage.setItem('LastSearchResults', JSON.stringify(data));
+    })
     .catch(err => console.log(err));
 }
 

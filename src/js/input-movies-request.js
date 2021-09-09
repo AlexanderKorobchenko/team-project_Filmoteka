@@ -10,26 +10,28 @@ const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
 const pagination = document.querySelector('.pagination');
 
-const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
+const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
 
 searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 
 function onSearchMovie(event) {
   event.preventDefault();
   changeLoader.addLoader();
-  clearGalleryContainer()
+
   pagination.classList.remove('hidden');
 
   const searchQuery = event.target.value;
 
-  // для возврата популярных фильмов
-  if (searchQuery === '') {
+  let newsearchQuery = searchQuery.trim();
+
+  // для возврата текуйщей страницы
+  if (newsearchQuery === '') {
     renderMoviesList(currentPageArray);
     changeLoader.clearLoader();
     return;
   }
 
-  finderQuery.searchRequest = searchQuery;
+  finderQuery.searchRequest = newsearchQuery;
   finderQuery.searchType = 1;
 
   finderQuery
@@ -48,18 +50,18 @@ function onSearchMovie(event) {
       const data = objectTransformations(results);
       renderMoviesList(data);
       changeLoader.clearLoader();
+      localStorage.setItem('LastSearchResults', JSON.stringify(data));
     })
     .catch(err => {
       console.log(err);
     });
-
-};
+}
 
 function renderMoviesList(movie) {
   const markup = moviesList(movie);
   galleryList.innerHTML = markup;
-};
+}
 
 function clearGalleryContainer() {
   galleryList.innerHTML = '';
-};
+}
