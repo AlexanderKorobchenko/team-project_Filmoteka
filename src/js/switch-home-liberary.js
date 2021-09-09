@@ -10,7 +10,8 @@ const href = {
     backgroundLibrary: document.querySelector('.background-library'),
     galleryList: document.getElementById('gallery'),
     pagination: document.querySelector('.pagination'),
-    mainSection: document.querySelector('.main')
+    errors: document.getElementById('errors'),
+    // mainSection: document.querySelector('.main')
 }
 
 const emptyLibrary = `<div class="error-img-library"></div>`;
@@ -23,6 +24,7 @@ href.libraryBtn.addEventListener('click', onGoLibrary);
 function onGoHome(event) {
     event.preventDefault();
     clearGalleryList();
+    href.errors.lastElementChild.classList.add('hidden');
     href.pagination.classList.remove('hidden');
 
     href.backgroundHome.classList.remove('hidden');
@@ -35,15 +37,14 @@ function onGoHome(event) {
     href.library.classList.add('hidden');
 
     //рендер текущей страници
-    const currentPageArray = JSON.parse(localStorage.getItem('Popular'));//пока используем популярные
-    //console.log(currentPageArray)
+    const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
     renderMoviesList(currentPageArray);
-    //console.log('рендер разметки с LocalStorage');
 };
 
 function onGoLibrary(event) {
     event.preventDefault();
     clearGalleryList();
+    href.errors.lastElementChild.classList.add('hidden');
     href.pagination.classList.add('hidden');
 
     href.backgroundLibrary.classList.remove('hidden');
@@ -72,12 +73,14 @@ href.library.lastElementChild.addEventListener('click', onClickQueue);
 
 function onClickWathed() {
     clearGalleryList();
+    href.errors.lastElementChild.classList.add('hidden');
     localStorage.setItem('checkBoxLibrary', '');
     showWatched();
 };
 
 function onClickQueue() {
     clearGalleryList();
+    href.errors.lastElementChild.classList.add('hidden');
     localStorage.setItem('checkBoxLibrary', 'queue');
     showQueue();
 };
@@ -90,7 +93,9 @@ function showWatched() {
 
     // если библиотека пустая
     if (watchedArray.length === 0) {
-        href.mainSection.firstElementChild.innerHTML = emptyLibrary;
+        clearGalleryList();
+        href.errors.lastElementChild.classList.remove('hidden');
+        //href.pagination.classList.add('hidden');
         return;
     };
 
@@ -106,7 +111,9 @@ function showQueue() {
 
     // если библиотека пустая
     if (watchedQueue.length === 0) {
-        href.mainSection.innerHTML = emptyLibrary;
+        clearGalleryList();
+        href.errors.lastElementChild.classList.remove('hidden');
+        //href.pagination.classList.add('hidden');
         return;
     };
 
