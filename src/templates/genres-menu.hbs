@@ -1,5 +1,20 @@
-<label for="genre">Choose genre</label>
-<select name="genre" id="genre">
-    {{#each this}}
-    <option value="{{id}}">{{name}}</option>
-    {{/each}}
+{{#each this}}
+<li class='gallery__list' id='{{id}}'>
+
+    {{#if poster_path}}
+    <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
+        onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/AlexanderKorobchenko/team-project_Filmoteka/main/src/images/error/no-image-available.webp'"
+        alt='{{title}}' title='{{title}}' class='gallery__image' />
+    {{/if}}
+    {{#unless poster_path}}
+    <img class='gallery__image gallery__image-border'
+        src='https://raw.githubusercontent.com/AlexanderKorobchenko/team-project_Filmoteka/main/src/images/error/no-image-available.webp'
+        alt='film photo' style='border:2px solid #ff6b08' />
+    {{/unless}}
+    <h2 class='gallery__title'>{{name}}</h2>
+    {{!-- <p class='gallery__text'>{{genres}}
+        |
+        {{release_date}}<span class='gallery__rating'>{{vote_average}}</span></p> --}}
+
+</li>
+{{/each}}

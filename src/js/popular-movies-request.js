@@ -24,7 +24,7 @@ export function popularMovies() {
   finder
     .searchMovies()
     .then(({ results }) => {
-      createGenresMenu();
+      //createGenresMenu();
 
       return objectTransformations(results);
     })

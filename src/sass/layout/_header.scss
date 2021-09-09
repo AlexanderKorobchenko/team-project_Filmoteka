@@ -244,6 +244,36 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
 }
 
+// #search-form {
+//   width: max-content;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+.search__genre {
+  display: block;
+  margin: 20px auto 0;
+  padding: 0 0 4px;
+
+  color: $white-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.17;
+  
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 0.5px solid $white-color;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.search__genre:hover,
+.search__genre:focus {
+  border-bottom: 0.5px solid $orange-color;
+}
+
 .liberary {
   margin-top: 50px;
   display: flex;
