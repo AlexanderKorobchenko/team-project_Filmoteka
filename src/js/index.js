@@ -1,6 +1,6 @@
 import '../sass/main.scss';
 import './verify-localstorage';
-import './pagination.js';
+import './tui_pagination';
 import './popular-movies-request.js';
 import './request-id-movie';
 import './genres-menu';
