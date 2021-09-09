@@ -37,8 +37,8 @@ function onGoHome(event) {
     href.library.classList.add('hidden');
 
     //рендер текущей страници
-    const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
-    renderMoviesList(currentPageArray);
+    const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
+    renderMoviesList(firstPopularPage);
 };
 
 function onGoLibrary(event) {
