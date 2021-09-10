@@ -19,7 +19,7 @@
 }
 
 .modal__backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -27,7 +27,7 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal__container {
+.movie__container {
   overflow-x: auto;
 
   position: relative;
@@ -145,7 +145,7 @@
   &:focus {
     background-color: $orange-color;
     color: $white-color;
-    border: 1px solid $orange-color
+    border: 1px solid $orange-color;
   }
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     width: 125px;
@@ -227,3 +227,89 @@
     }
   }
 }
+
+// ====================  Team Modal (begin) ====================
+.team__container {
+  position: absolute;
+  top: 200px;
+  margin: auto;
+  font-family: $main-font;
+  font-weight: $font-weight;
+  // font-size: $font-size;
+  // line-height: $line-height;
+  color: $card-text-color;
+  max-height: 100vh;
+  width: 280px;
+
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    display: flex;
+    margin: auto;
+    width: 618px;
+    height: 562px;
+    padding: 42px 29px 40px 28px;
+  }
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    width: 1024px;
+    height: 100%;
+    padding: 50px 30px 40px 30px;
+  }
+}
+.team {
+  position: absolute;
+  padding-bottom: 100px;
+}
+
+.team__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: calc((400px * 3) + (20px * 4));
+}
+.teamate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 0;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 400px;
+  background-color: $orange-color;
+}
+.teamate_photo {
+  width: 170px;
+  height: 260px;
+}
+// .teamate__name {
+// }
+.teamate_links {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+.link-item {
+  // width: calc((100%-3 * 10px) / 3);
+}
+.teamate_name {
+  color: white;
+}
+.link-svg {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  // stroke-width: 2px;
+  // stroke: red;
+  fill: white;
+}
+.close__button {
+  position: fixed;
+  top: 200px;
+  right: -100px;
+  height: 40px;
+  width: 50px;
+  background-color: white;
+}
+// ====================  Team Modal (end) ====================
