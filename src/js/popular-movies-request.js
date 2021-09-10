@@ -11,6 +11,9 @@ finder.searchType = 0;
 
 finder.searchGenres();
 
+//const pagination = new Pagination(container, options);
+
+
 const galleryList = document.getElementById('gallery');
 const genresMenuRef = document.querySelector('#genres_menu');
 

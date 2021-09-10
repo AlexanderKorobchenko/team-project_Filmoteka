@@ -9,12 +9,13 @@ const href = {
     backgroundHome: document.querySelector('.background'),
     backgroundLibrary: document.querySelector('.background-library'),
     galleryList: document.getElementById('gallery'),
-    pagination: document.querySelector('.pagination'),
+    //pagination: document.querySelector('.pagination'),
     errors: document.getElementById('errors'),
     // mainSection: document.querySelector('.main')
+    tuiPagination: document.getElementById('tui-pagination-container'),
 }
 
-const emptyLibrary = `<div class="error-img-library"></div>`;
+//const emptyLibrary = `<div class="error-img-library"></div>`;
 
 // переключение между страницами
 href.logoBtn.addEventListener('click', onGoHome);
@@ -25,7 +26,8 @@ function onGoHome(event) {
     event.preventDefault();
     clearGalleryList();
     href.errors.lastElementChild.classList.add('hidden');
-    href.pagination.classList.remove('hidden');
+    //href.pagination.classList.remove('hidden');
+    href.tuiPagination.classList.remove('hidden');
 
     href.backgroundHome.classList.remove('hidden');
     href.backgroundLibrary.classList.add('hidden');
@@ -45,7 +47,8 @@ function onGoLibrary(event) {
     event.preventDefault();
     clearGalleryList();
     href.errors.lastElementChild.classList.add('hidden');
-    href.pagination.classList.add('hidden');
+    //href.pagination.classList.add('hidden');
+    href.tuiPagination.classList.add('hidden');
 
     href.backgroundLibrary.classList.remove('hidden');
     href.backgroundHome.classList.add('hidden');
@@ -96,6 +99,7 @@ function showWatched() {
         clearGalleryList();
         href.errors.lastElementChild.classList.remove('hidden');
         //href.pagination.classList.add('hidden');
+        href.tuiPagination.classList.add('hidden');
         return;
     };
 
@@ -114,6 +118,7 @@ function showQueue() {
         clearGalleryList();
         href.errors.lastElementChild.classList.remove('hidden');
         //href.pagination.classList.add('hidden');
+        href.tuiPagination.classList.add('hidden');
         return;
     };
 

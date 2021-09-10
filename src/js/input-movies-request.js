@@ -8,7 +8,8 @@ const finderQuery = new ApiService();
 const changeLoader = new Loader('.loader');
 const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
-const pagination = document.querySelector('.pagination');
+//const pagination = document.querySelector('.pagination');
+const tuiPagination = document.getElementById('tui-pagination-container');
 const errors = document.getElementById('errors');
 
 const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
@@ -19,7 +20,8 @@ function onSearchMovie(event) {
   event.preventDefault();
   changeLoader.addLoader();
   errors.firstElementChild.classList.add('hidden');
-  pagination.classList.remove('hidden');
+  // pagination.classList.remove('hidden');
+  tuiPagination.classList.remove('hidden');
 
   const searchQuery = event.target.value;
 
@@ -42,7 +44,8 @@ function onSearchMovie(event) {
       if (results.length === 0) {
         clearGalleryContainer();
         errors.firstElementChild.classList.remove('hidden');
-        pagination.classList.add('hidden');
+        //  pagination.classList.add('hidden');
+        tuiPagination.classList.add('hidden');
         changeLoader.clearLoader();
         return;
       }

@@ -10,7 +10,7 @@ const finder = new ApiService();
 const container = document.getElementById('tui-pagination-container');
 const galleryList = document.getElementById('gallery');
 
-let totalMoviesFound = Number(localStorage.getItem('TotalPagesInLastSearchResult'))*20;
+let totalMoviesFound = Number(localStorage.getItem('TotalPagesInLastSearchResult')) * 20;
 
 const options = {
   totalItems: totalMoviesFound,
@@ -43,12 +43,12 @@ const pagination = new Pagination(container, options);
 container.addEventListener('click', onClick);
 function onClick(e) {
   console.log(pagination.getCurrentPage());
-    onPagination(pagination.getCurrentPage());
+  onPagination(pagination.getCurrentPage());
 }
 
 
 function onPagination(pageNumber) {
-    finder.pageNumber = pageNumber;
+  finder.pageNumber = pageNumber;
   finder.searchType = localStorage.getItem('LastSearchIndex');
   finder.searchRequest = localStorage.getItem('LastQuery');
   let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
@@ -60,8 +60,8 @@ function onPagination(pageNumber) {
       return objectTransformations(results);
     })
     .then(data => {
-        renderMoviesList(data);
-        window.scrollTo(0, 230);
+      renderMoviesList(data);
+      window.scrollTo(0, 230);
       return data;
     })
     .then(data => localStorage.setItem('LastSearchResults', JSON.stringify(data)))
