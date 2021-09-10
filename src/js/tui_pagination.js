@@ -12,10 +12,14 @@ const galleryList = document.getElementById('gallery');
 
 let totalMoviesFound = Number(localStorage.getItem('TotalPagesInLastSearchResult')) * 20;
 
+let visiblePages =
+  document.documentElement.clientWidth > 767 ? 7 : 2;
+console.log(visiblePages);
+
 const options = {
   totalItems: totalMoviesFound,
   itemsPerPage: 20,
-  visiblePages: 7,
+  visiblePages, 
   page: 1,
   centerAlign: false,
   firstItemClassName: 'tui-first-child',
