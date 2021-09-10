@@ -1,6 +1,6 @@
 import ApiService from './apiService';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+
 import moviesList from '../templates/main-cards.hbs';
 import objectTransformations from './objectTransformations.js';
 
@@ -72,5 +72,15 @@ function renderMoviesList(movie) {
   galleryList.innerHTML = markup;
 }
 
+// ========= resetPage ============
+const searchForm = document.getElementById('search-form');
+const logoBtn = document.getElementById('logo-home');
+const homeBtn = document.getElementById('btn-home');
 
+searchForm.addEventListener('input', resetPage);
+logoBtn.addEventListener('click', resetPage);
+homeBtn.addEventListener('click', resetPage);
 
+function resetPage() {
+  pagination.reset();
+};

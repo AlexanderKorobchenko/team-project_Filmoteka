@@ -1,3 +1,4 @@
+import 'tui-pagination/dist/tui-pagination.css';
 import '../sass/main.scss';
 import './verify-localstorage';
 import './tui_pagination';
