@@ -72,6 +72,12 @@
 .tui-pagination .tui-first-child.tui-is-selected,
 .tui-pagination strong.tui-first-child {
   margin-left: 0;
+  border-left: none;
+  
+}
+
+.tui-pagination .tui-last-child.tui-is-selected {
+  border-right: none;
 }
 
 .tui-pagination .tui-first,
