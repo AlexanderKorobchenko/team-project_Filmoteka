@@ -10,12 +10,17 @@ const finder = new ApiService();
 const container = document.getElementById('tui-pagination-container');
 const galleryList = document.getElementById('gallery');
 
-
-
 window.options = {
   totalItems: undefined,
+
+let visiblePages =
+  document.documentElement.clientWidth > 767 ? 7 : 2;
+console.log(visiblePages);
+
+const options = {
+  //totalItems: totalMoviesFound,
   itemsPerPage: 20,
-  visiblePages: 7,
+  visiblePages, 
   page: 1,
   centerAlign: false,
   firstItemClassName: 'tui-first-child',

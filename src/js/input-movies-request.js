@@ -63,7 +63,7 @@ function onSearchMovie(event) {
     })
     .catch(err => {
       console.log(err);
-    });
+    });  
 }
 
 function renderMoviesList(movie) {
