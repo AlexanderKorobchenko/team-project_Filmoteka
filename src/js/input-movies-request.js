@@ -39,6 +39,12 @@ function onSearchMovie(event) {
 
   finderQuery
     .searchMovies()
+    .then(res => {
+      window.options.totalItems = res.total_results;
+      console.log(window.options);
+      window.pagination.reset(res.total_results); // pagination.movePageTo(pageNumber);
+      return res;
+    })
     .then(({ results }) => {
       // Если ничего не найдено
       if (results.length === 0) {

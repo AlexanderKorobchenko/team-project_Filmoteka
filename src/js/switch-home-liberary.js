@@ -1,4 +1,7 @@
 import moviesList from '../templates/main-cards.hbs';
+import ApiService from './apiService';
+const finder = new ApiService();
+
 
 const href = {
     logoBtn: document.getElementById('logo-home'),
@@ -23,24 +26,28 @@ href.homeBtn.addEventListener('click', onGoHome);
 href.libraryBtn.addEventListener('click', onGoLibrary);
 
 function onGoHome(event) {
-    event.preventDefault();
-    clearGalleryList();
-    href.errors.lastElementChild.classList.add('hidden');
-    //href.pagination.classList.remove('hidden');
-    href.tuiPagination.classList.remove('hidden');
+  event.preventDefault();
+  clearGalleryList();
+  href.errors.lastElementChild.classList.add('hidden');
+  //href.pagination.classList.remove('hidden');
+  href.tuiPagination.classList.remove('hidden');
 
-    href.backgroundHome.classList.remove('hidden');
-    href.backgroundLibrary.classList.add('hidden');
+  href.backgroundHome.classList.remove('hidden');
+  href.backgroundLibrary.classList.add('hidden');
 
-    href.libraryBtn.classList.remove('navigation__btn-current');
-    href.homeBtn.classList.add('navigation__btn-current');
+  href.libraryBtn.classList.remove('navigation__btn-current');
+  href.homeBtn.classList.add('navigation__btn-current');
 
-    href.search.classList.remove('hidden');
-    href.library.classList.add('hidden');
+  href.search.classList.remove('hidden');
+  href.library.classList.add('hidden');
 
-    //рендер текущей страници
-    const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
-    renderMoviesList(firstPopularPage);
+  //рендер текущей страници
+  const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
+  renderMoviesList(firstPopularPage);
+  finder.searchReset();
+      localStorage.removeItem('LastQuery');
+      localStorage.removeItem('LastSearchResults');
+      localStorage.setItem('LastSearchIndex',0);
 };
 
 function onGoLibrary(event) {
