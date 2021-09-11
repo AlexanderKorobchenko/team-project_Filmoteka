@@ -12,7 +12,7 @@ const galleryList = document.getElementById('gallery');
 
 let visiblePages =
   document.documentElement.clientWidth > 767 ? 7 : 2;
-console.log(visiblePages);
+
 
 window.options = {
   totalItems: undefined,
