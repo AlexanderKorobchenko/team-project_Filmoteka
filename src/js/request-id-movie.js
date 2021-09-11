@@ -1,4 +1,4 @@
-import moviesCard from '../templates/test.hbs';
+import moviesCard from '../templates/modal-movie.hbs';
 import ApiService from './apiService.js';
 import mainCards from '../templates/main-cards.hbs';
 // import { options } from './tui_pagination';
@@ -158,7 +158,10 @@ function onSearchID(e) {
 
 // ================= начало открытие/закрытие модалки =================
 function openModalWindow() {
-  refs.modalWindow.classList.add('is-open'); //показали модалку
+  setTimeout(function() { 
+    refs.modalWindow.classList.add('is-open') 
+  }, 150) 
+  //показали модалку ()== ТАЙМАУТ для красивого открытия (Яша) 
   document.querySelector(".close__button").addEventListener('click', closeModalWindow);
   refs.modalWindow.addEventListener('click', onControlClick);
   window.addEventListener('keydown', onControlKey);
@@ -181,7 +184,10 @@ function onControlKey(event) {
 
 function closeModalWindow() {
   refs.modalWindow.classList.remove('is-open');
-  document.querySelector('.image').src = '';
+  setTimeout(function() { 
+    document.querySelector('.image').src = '' 
+  }, 150) 
+   // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
 };
 // ================= конец открытие/закрытие модалки =================
 
