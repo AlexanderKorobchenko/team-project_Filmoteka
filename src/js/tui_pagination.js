@@ -14,7 +14,7 @@ let totalMoviesFound = Number(localStorage.getItem('TotalPagesInLastSearchResult
 
 let visiblePages =
   document.documentElement.clientWidth > 767 ? 7 : 2;
-console.log(visiblePages);
+
 
 const options = {
   totalItems: totalMoviesFound,
