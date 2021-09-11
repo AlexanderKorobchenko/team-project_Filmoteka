@@ -10,14 +10,13 @@ const finder = new ApiService();
 const container = document.getElementById('tui-pagination-container');
 const galleryList = document.getElementById('gallery');
 
-window.options = {
-  totalItems: undefined,
-
 let visiblePages =
   document.documentElement.clientWidth > 767 ? 7 : 2;
 console.log(visiblePages);
 
-const options = {
+window.options = {
+  totalItems: undefined,
+// const options = {
   //totalItems: totalMoviesFound,
   itemsPerPage: 20,
   visiblePages, 
@@ -42,6 +41,7 @@ const options = {
       '</a>',
   },
 };
+
 window.options.totalItems = window.options.totalItems || 20000;
 
 window.pagination = new Pagination(container, window.options);
