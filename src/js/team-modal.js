@@ -8,7 +8,6 @@ const refs = {
 }
 
 refs.teamBtn.addEventListener('click', openTeamModal)
-openTeamModal()
 
 
 function openTeamModal() {

@@ -4,7 +4,8 @@
     {{#each this}}
         <li class='teamate'>       
           <div class='photo-and-links'>
-          <img src="{{photo}}" alt="{{name}}" class='teamate_photo' width="200px"/>
+          {{!-- <img src="{{photo}}" alt="{{name}}" class='teamate_photo' width="200px"/> --}}
+          <div class='teamate_photo' style="background-image:url('{{photo}}');"></div>
            <ul class='teamate__links'>
             <li class="link-item" >
               <a  href="{{telegram}}">
