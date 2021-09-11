@@ -1,5 +1,6 @@
 import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService';
+import { popularMovies } from './popular-movies-request';
 const finder = new ApiService();
 
 
@@ -48,7 +49,8 @@ function onGoHome(event) {
   finder.searchReset();
       localStorage.removeItem('LastQuery');
       localStorage.removeItem('LastSearchResults');
-      localStorage.setItem('LastSearchIndex',0);
+  localStorage.setItem('LastSearchIndex', 0);
+  popularMovies();
 };
 
  // localStorage.setItem('LastSearchResults', JSON.stringify(firstPopularPage));

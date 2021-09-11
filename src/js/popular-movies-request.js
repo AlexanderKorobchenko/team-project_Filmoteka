@@ -25,6 +25,12 @@ export function popularMovies() {
 
   finder
     .searchMovies()
+    .then(res => {
+      window.options.totalItems = res.total_results;
+      console.log(window.options);
+      window.pagination.reset(res.total_results); // pagination.movePageTo(pageNumber);
+      return res;
+    })
     .then(({ results }) => {
       //createGenresMenu();
 
@@ -37,7 +43,7 @@ export function popularMovies() {
       return data;
     })
     .then(data => {
-      localStorage.setItem('Popular', JSON.stringify(data));
+      // localStorage.setItem('Popular', JSON.stringify(data));
       localStorage.setItem('LastSearchResults', JSON.stringify(data));
     })
     .catch(err => console.log(err));
