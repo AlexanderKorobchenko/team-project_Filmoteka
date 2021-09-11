@@ -1,4 +1,7 @@
 import moviesList from '../templates/main-cards.hbs';
+import ApiService from './apiService';
+const finder = new ApiService();
+
 
 const href = {
   logoBtn: document.getElementById('logo-home'),
@@ -41,8 +44,16 @@ function onGoHome(event) {
   //рендер текущей страници
   const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
   renderMoviesList(firstPopularPage);
-  localStorage.setItem('LastSearchResults', JSON.stringify(firstPopularPage));
-}
+
+  finder.searchReset();
+      localStorage.removeItem('LastQuery');
+      localStorage.removeItem('LastSearchResults');
+      localStorage.setItem('LastSearchIndex',0);
+};
+
+ // localStorage.setItem('LastSearchResults', JSON.stringify(firstPopularPage));
+//}
+
 
 function onGoLibrary(event) {
   event.preventDefault();

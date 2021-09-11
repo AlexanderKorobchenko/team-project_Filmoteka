@@ -10,14 +10,15 @@ const finder = new ApiService();
 const container = document.getElementById('tui-pagination-container');
 const galleryList = document.getElementById('gallery');
 
-let totalMoviesFound = Number(localStorage.getItem('TotalPagesInLastSearchResult')) * 20;
+window.options = {
+  totalItems: undefined,
 
 let visiblePages =
   document.documentElement.clientWidth > 767 ? 7 : 2;
 console.log(visiblePages);
 
 const options = {
-  totalItems: totalMoviesFound,
+  //totalItems: totalMoviesFound,
   itemsPerPage: 20,
   visiblePages, 
   page: 1,
@@ -41,13 +42,18 @@ const options = {
       '</a>',
   },
 };
+window.options.totalItems = window.options.totalItems || 20000;
 
-const pagination = new Pagination(container, options);
+window.pagination = new Pagination(container, window.options);
 
+
+
+
+//__________________________________________________________________________________________
 container.addEventListener('click', onClick);
 function onClick(e) {
-  console.log(pagination.getCurrentPage());
-  onPagination(pagination.getCurrentPage());
+  console.log(window.pagination.getCurrentPage());
+  onPagination(window.pagination.getCurrentPage());
 }
 
 
@@ -59,6 +65,12 @@ function onPagination(pageNumber) {
 
   finder
     .searchMovies()
+    .then(res => {
+  //       options.totalItems = res.total_results; 
+  console.dir(window.options);
+  pagination.reset(res.total_results);
+      pagination.movePageTo(pageNumber);
+return res; })
     .then(({ results }) => {
 
       return objectTransformations(results);
