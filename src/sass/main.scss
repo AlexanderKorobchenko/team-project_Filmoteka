@@ -2,6 +2,8 @@
 //background-image: url('../images/demo.jpg');
 
 @import './base/variables';
+@import './base/fonts';
+@import './base/_modern-normalize.min.scss';
 @import './base/common';
 @import './base/container';
 @import './base/visually-hidden';
