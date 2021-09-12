@@ -1,45 +1,37 @@
-import moviesList from '../templates/main-cards.hbs';
+// import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
-import menuTemplate from '../templates/genres-menu.hbs';
+// import menuTemplate from '../templates/genres-menu.hbs';
 import objectTransformations from './objectTransformations.js';
 import Loader from './loader.js';
+import resetRender from './resetRender';
 
+const { renderMoviesList, clearGalleryContainer} = resetRender;
 const changeLoader = new Loader('.loader');
-
 const finder = new ApiService();
 finder.searchType = 0;
 
 finder.searchGenres();
 
 //const pagination = new Pagination(container, options);
-
-const galleryList = document.getElementById('gallery');
-const genresMenuRef = document.querySelector('#genres_menu');
-
 export function popularMovies() {
   changeLoader.addLoader();
-
   clearGalleryContainer();
-
   finder.searchReset();
 
   finder
     .searchMovies()
     .then(res => {
       window.options.totalItems = res.total_results;
-      console.log(window.options);
+      // console.log(window.options);
       window.pagination.reset(res.total_results); // pagination.movePageTo(pageNumber);
       return res;
     })
     .then(({ results }) => {
-      //createGenresMenu();
-
       return objectTransformations(results);
     })
     .then(data => {
       renderMoviesList(data);
       changeLoader.clearLoader();
-      let pagesTotal = localStorage.getItem('TotalPagesInLastSearchResult');
       return data;
     })
     .then(data => {
@@ -50,20 +42,3 @@ export function popularMovies() {
 }
 
 popularMovies();
-
-// пока так. Возможны в дальнейшем мелкие корректировки и функции которые ниже будут удалены и взяты с других файлов.
-
-function clearGalleryContainer() {
-  galleryList.innerHTML = '';
-}
-
-function renderMoviesList(movie) {
-  const markup = moviesList(movie);
-  galleryList.innerHTML = markup;
-}
-
-function createGenresMenu() {
-  const genresArray = JSON.parse(localStorage.getItem('Genres'));
-  genresArray.unshift({ id: '', name: 'none' });
-  genresMenuRef.insertAdjacentHTML('beforeend', menuTemplate(genresArray));
-}

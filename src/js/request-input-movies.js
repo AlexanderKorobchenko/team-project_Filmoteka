@@ -3,15 +3,15 @@ import moviesList from '../templates/main-cards.hbs';
 import ApiService from './apiService.js';
 import Loader from './loader.js';
 import objectTransformations from './objectTransformations';
+import resetRender from './resetRender';
 
+const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finderQuery = new ApiService();
 const changeLoader = new Loader('.loader');
-const galleryList = document.getElementById('gallery');
 const searchForm = document.getElementById('search-form');
 //const pagination = document.querySelector('.pagination');
 const tuiPagination = document.getElementById('tui-pagination-container');
 const errors = document.getElementById('errors');
-
 const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
 
 searchForm.addEventListener('input', debounce(onSearchMovie, 800));
@@ -24,17 +24,16 @@ function onSearchMovie(event) {
   tuiPagination.classList.remove('hidden');
 
   const searchQuery = event.target.value;
-
-  let newsearchQuery = searchQuery.trim();
+  let newSearchQuery = searchQuery.trim();
 
   // для возврата текуйщей страницы
-  if (newsearchQuery === '') {
+  if (newSearchQuery === '') {
     renderMoviesList(currentPageArray);
     changeLoader.clearLoader();
     return;
   }
 
-  finderQuery.searchRequest = newsearchQuery;
+  finderQuery.searchRequest = newSearchQuery;
   finderQuery.searchType = 1;
 
   finderQuery
@@ -66,11 +65,3 @@ function onSearchMovie(event) {
     });  
 }
 
-function renderMoviesList(movie) {
-  const markup = moviesList(movie);
-  galleryList.innerHTML = markup;
-}
-
-function clearGalleryContainer() {
-  galleryList.innerHTML = '';
-}
