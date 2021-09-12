@@ -3,7 +3,6 @@ import ApiService from './apiService';
 import { popularMovies } from './popular-movies-request';
 const finder = new ApiService();
 
-
 const href = {
   logoBtn: document.getElementById('logo-home'),
   homeBtn: document.getElementById('btn-home'),
@@ -13,13 +12,9 @@ const href = {
   backgroundHome: document.querySelector('.background'),
   backgroundLibrary: document.querySelector('.background-library'),
   galleryList: document.getElementById('gallery'),
-  //pagination: document.querySelector('.pagination'),
   errors: document.getElementById('errors'),
-  // mainSection: document.querySelector('.main')
   tuiPagination: document.getElementById('tui-pagination-container'),
 };
-
-//const emptyLibrary = `<div class="error-img-library"></div>`;
 
 // переключение между страницами
 href.logoBtn.addEventListener('click', onGoHome);
@@ -29,8 +24,8 @@ href.libraryBtn.addEventListener('click', onGoLibrary);
 function onGoHome(event) {
   event.preventDefault();
   clearGalleryList();
+  href.errors.firstElementChild.classList.add('hidden');
   href.errors.lastElementChild.classList.add('hidden');
-  //href.pagination.classList.remove('hidden');
   href.tuiPagination.classList.remove('hidden');
 
   href.backgroundHome.classList.remove('hidden');
@@ -43,25 +38,20 @@ function onGoHome(event) {
   href.library.classList.add('hidden');
 
   //рендер текущей страници
-  const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
-  renderMoviesList(firstPopularPage);
+  // const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
+  // renderMoviesList(firstPopularPage);
 
   finder.searchReset();
-      localStorage.removeItem('LastQuery');
-      localStorage.removeItem('LastSearchResults');
+  localStorage.removeItem('LastQuery');
+  localStorage.removeItem('LastSearchResults');
   localStorage.setItem('LastSearchIndex', 0);
   popularMovies();
 };
-
- // localStorage.setItem('LastSearchResults', JSON.stringify(firstPopularPage));
-//}
-
 
 function onGoLibrary(event) {
   event.preventDefault();
   clearGalleryList();
   href.errors.lastElementChild.classList.add('hidden');
-  //href.pagination.classList.add('hidden');
   href.tuiPagination.classList.add('hidden');
 
   href.backgroundLibrary.classList.remove('hidden');
@@ -112,7 +102,6 @@ function showWatched() {
   if (watchedArray.length === 0) {
     clearGalleryList();
     href.errors.lastElementChild.classList.remove('hidden');
-    //href.pagination.classList.add('hidden');
     href.tuiPagination.classList.add('hidden');
     return;
   }
@@ -131,7 +120,6 @@ function showQueue() {
   if (watchedQueue.length === 0) {
     clearGalleryList();
     href.errors.lastElementChild.classList.remove('hidden');
-    //href.pagination.classList.add('hidden');
     href.tuiPagination.classList.add('hidden');
     return;
   }
