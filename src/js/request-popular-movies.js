@@ -1,18 +1,18 @@
 // import moviesList from '../templates/main-cards.hbs';
-import ApiService from './apiService.js';
 // import menuTemplate from '../templates/genres-menu.hbs';
+import ApiService from './apiService.js';
 import objectTransformations from './objectTransformations.js';
 import Loader from './loader.js';
 import resetRender from './resetRender';
 
-const { renderMoviesList, clearGalleryContainer} = resetRender;
+const { renderMoviesList, clearGalleryContainer } = resetRender;
+
 const changeLoader = new Loader('.loader');
 const finder = new ApiService();
 finder.searchType = 0;
 
 finder.searchGenres();
 
-//const pagination = new Pagination(container, options);
 export function popularMovies() {
   changeLoader.addLoader();
   clearGalleryContainer();

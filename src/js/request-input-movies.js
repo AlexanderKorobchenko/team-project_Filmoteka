@@ -9,7 +9,6 @@ const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finderQuery = new ApiService();
 const changeLoader = new Loader('.loader');
 const searchForm = document.getElementById('search-form');
-//const pagination = document.querySelector('.pagination');
 const tuiPagination = document.getElementById('tui-pagination-container');
 const errors = document.getElementById('errors');
 const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
@@ -40,7 +39,7 @@ function onSearchMovie(event) {
     .searchMovies()
     .then(res => {
       window.options.totalItems = res.total_results;
-      console.log(window.options);
+      //console.log(window.options);
       window.pagination.reset(res.total_results); // pagination.movePageTo(pageNumber);
       return res;
     })
@@ -61,7 +60,7 @@ function onSearchMovie(event) {
       localStorage.setItem('LastSearchResults', JSON.stringify(data));
     })
     .catch(err => {
-      console.log(err);
-    });  
+      console.warm(err);
+    });
 }
 

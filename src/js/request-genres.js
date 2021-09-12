@@ -1,12 +1,15 @@
-import menuTemplate from '../templates/genres-menu.hbs';
 // import moviesList from '../templates/main-cards.hbs';
+import menuTemplate from '../templates/genres-menu.hbs';
 import ApiService from './apiService.js';
+import Loader from './loader.js';
 import objectTransformations from './objectTransformations.js';
 import resetRender from './resetRender';
 
-const { renderMoviesList, clearGalleryContainer} = resetRender;
-const finder = new ApiService();
+const { renderMoviesList, clearGalleryContainer } = resetRender;
 const genresMenuRef = document.querySelector('#genres_menu');
+
+const finder = new ApiService();
+const changeLoader = new Loader('.loader');
 
 createGenresMenu();
 
@@ -19,24 +22,29 @@ function createGenresMenu() {
 genresMenuRef.addEventListener('input', onInput);
 
 function onInput(event) {
-  console.dir(genresMenuRef);
+  event.preventDefault();
+  changeLoader.addLoader();
+  clearGalleryContainer();
+
   if (event.target[event.target.selectedIndex].value === '') {
     renderMoviesList(JSON.parse(localStorage.getItem('LastSearchResults')));
     return;
   }
+
   finder.searchType = 3;
   finder.searchRequest = event.target[event.target.selectedIndex].value;
   finder
     .searchMovies()
     .then(({ results }) => {
-      // window.options.totalItems = results.total_results;
-      // window.pagination.reset();
+      window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));;
+      window.pagination.reset(+JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult')) * 20);
       return objectTransformations(results);
     })
     .then(data => {
       localStorage.setItem('LastSearchResults', JSON.stringify(data));
       renderMoviesList(data);
+      changeLoader.clearLoader();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.warm(err));
 }
 

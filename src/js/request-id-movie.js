@@ -6,7 +6,6 @@ import mainCards from '../templates/main-cards.hbs';
 
 // const pagination = new Pagination()
 
-
 const refs = {
   galleryList: document.getElementById('gallery'),
   modalWindow: document.querySelector('#modal-window'),
@@ -14,7 +13,6 @@ const refs = {
   library: document.getElementById('liberary'),
   errors: document.getElementById('errors'),
 }
-
 
 const finder = new ApiService();
 
@@ -60,8 +58,8 @@ function onSearchID(e) {
 
           for (let i = 0; i < arrObjectWatch.length; i += 1) {
             if (+arrObjectWatch[i].id === +event.target.dataset.id) {
-              console.log('Совпало');
-              console.log(arrObjectWatch[i]);
+              // console.log('Совпало');
+              // console.log(arrObjectWatch[i]);
               indx = i;
             }
           }
@@ -81,7 +79,7 @@ function onSearchID(e) {
           a = JSON.parse(localStorage.getItem('watched')) || [];
           a.push(filteredFilm[0]);
 
-          console.log(a);
+          //console.log(a);
           localStorage.setItem('watched', JSON.stringify(a));
           watchBtn.textContent = 'Delete from watched';
         }
@@ -118,8 +116,8 @@ function onSearchID(e) {
 
           for (let i = 0; i < arrObjectQueue.length; i += 1) {
             if (+arrObjectQueue[i].id === +event.target.dataset.id) {
-              console.log('Совпало');
-              console.log(arrObjectQueue[i]);
+              // console.log('Совпало');
+              // console.log(arrObjectQueue[i]);
               indx = i;
             }
           }
@@ -139,7 +137,7 @@ function onSearchID(e) {
           a = JSON.parse(localStorage.getItem('queue')) || [];
           a.push(filteredFilm[0]);
 
-          console.log(a);
+          //console.log(a);
           localStorage.setItem('queue', JSON.stringify(a));
           queueBtn.textContent = 'Delete from queue';
         }
@@ -153,14 +151,14 @@ function onSearchID(e) {
       }
       // ================= конец работы кнопки  queue=================
     })
-    .catch(err => console.log(err));
+    .catch(err => console.warm(err));
 };
 
 // ================= начало открытие/закрытие модалки =================
 function openModalWindow() {
-  setTimeout(function() { 
-    refs.modalWindow.classList.add('is-open') 
-  }, 150) 
+  setTimeout(function () {
+    refs.modalWindow.classList.add('is-open')
+  }, 150)
   //показали модалку ()== ТАЙМАУТ для красивого открытия (Яша) 
   document.querySelector(".close__button").addEventListener('click', closeModalWindow);
   refs.modalWindow.addEventListener('click', onControlClick);
@@ -184,10 +182,10 @@ function onControlKey(event) {
 
 function closeModalWindow() {
   refs.modalWindow.classList.remove('is-open');
-  setTimeout(function() { 
-    document.querySelector('.image').src = '' 
-  }, 150) 
-   // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
+  setTimeout(function () {
+    document.querySelector('.image').src = ''
+  }, 150)
+  // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
 };
 // ================= конец открытие/закрытие модалки =================
 

@@ -4,7 +4,7 @@ import Pagination from 'tui-pagination';
 import objectTransformations from './objectTransformations.js';
 import resetRender from './resetRender';
 
-const { renderMoviesList, clearGalleryContainer} = resetRender;
+const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finder = new ApiService();
 const container = document.getElementById('tui-pagination-container');
 
@@ -14,7 +14,7 @@ let visiblePages =
 window.options = {
   totalItems: undefined,
   itemsPerPage: 20,
-  visiblePages, 
+  visiblePages,
   page: 1,
   centerAlign: false,
   firstItemClassName: 'tui-first-child',
@@ -44,7 +44,7 @@ window.pagination = new Pagination(container, window.options);
 //__________________________________________________________________________________________
 container.addEventListener('click', onClick);
 function onClick(e) {
-  console.log(window.pagination.getCurrentPage());
+  // console.log(window.pagination.getCurrentPage());
   onPagination(window.pagination.getCurrentPage());
 }
 
@@ -57,13 +57,13 @@ function onPagination(pageNumber) {
   finder
     .searchMovies()
     .then(res => {
-  //       options.totalItems = res.total_results; 
-  console.dir(window.options);
-  pagination.reset(res.total_results);
+      // options.totalItems = res.total_results; 
+      // console.dir(window.options);
+      pagination.reset(res.total_results);
       pagination.movePageTo(pageNumber);
-return res; })
+      return res;
+    })
     .then(({ results }) => {
-
       return objectTransformations(results);
     })
     .then(data => {
@@ -72,7 +72,7 @@ return res; })
       return data;
     })
     .then(data => localStorage.setItem('LastSearchResults', JSON.stringify(data)))
-    .catch(err => console.log(err));
+    .catch(err => console.warm(err));
 }
 
 // ========= resetPage ============

@@ -20,16 +20,16 @@ export default class ApiService {
 
   searchMovies() {
     let url = this.moviesUrls[this.searchIndex];
-    console.log(url);
+    // console.log(url);
     return fetch(url)
       .then(response => response.json())
       .then(res => {
-        if(res.total_pages) localStorage.setItem('TotalPagesInLastSearchResult', JSON.stringify(res.total_pages));
+        if (res.total_pages) localStorage.setItem('TotalPagesInLastSearchResult', JSON.stringify(res.total_pages));
         if (this.searchIndex !== 2) localStorage.setItem('LastSearchIndex', this.searchIndex);
         localStorage.setItem('LastQuery', this.query);
         this.totalResultsFound = res.total_results; //возможно, понадобится для пагинации
         this.totalPagesFound = res.total_pages;
-        console.log(res);
+        //console.log(res);
         return res;
       }).catch(err => console.log(err));
   }
@@ -60,7 +60,7 @@ export default class ApiService {
   set pageNumber(newPageNumber) {
     //это для пагинации, установка номера страницы
     this.page = newPageNumber;
-    console.log(this.page);
+    // console.log(this.page);
     this.defineUrls();
   }
 }
