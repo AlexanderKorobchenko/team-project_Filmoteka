@@ -17,7 +17,7 @@ const href = {
   backgroundLibrary: document.querySelector('.background-library'),
   errors: document.getElementById('errors'),
   tuiPagination: document.getElementById('tui-pagination-container'),
-  genresMenu: document.querySelector('#genres_menu'),
+  genresMenu: document.getElementById('form-for-genre'),
 };
 
 // переключение между страницами
@@ -27,17 +27,13 @@ href.libraryBtn.addEventListener('click', onGoLibrary);
 
 function onGoHome(event) {
   event.preventDefault();
-  href.input.value = '';
+  href.search.firstElementChild.reset();
   clearGalleryContainer();
   href.errors.firstElementChild.classList.add('hidden');
   href.errors.lastElementChild.classList.add('hidden');
   href.tuiPagination.classList.remove('hidden');
   href.genresMenu.classList.remove('hidden');
-
-  // нужно сбросить поиск по жанрам
-  //href.genresMenu.reset();
-  // console.log(href.genresMenu);
-
+  href.genresMenu.reset();
 
   href.backgroundHome.classList.remove('hidden');
   href.backgroundLibrary.classList.add('hidden');

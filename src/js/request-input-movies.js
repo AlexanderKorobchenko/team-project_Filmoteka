@@ -12,6 +12,7 @@ const searchForm = document.getElementById('search-form');
 const tuiPagination = document.getElementById('tui-pagination-container');
 const errors = document.getElementById('errors');
 const currentPageArray = JSON.parse(localStorage.getItem('LastSearchResults'));
+const genresMenu = document.getElementById('form-for-genre');
 
 searchForm.addEventListener('input', debounce(onSearchMovie, 800));
 
@@ -19,8 +20,8 @@ function onSearchMovie(event) {
   event.preventDefault();
   changeLoader.addLoader();
   errors.firstElementChild.classList.add('hidden');
-  // pagination.classList.remove('hidden');
   tuiPagination.classList.remove('hidden');
+  genresMenu.reset();
 
   const searchQuery = event.target.value;
   let newSearchQuery = searchQuery.trim();

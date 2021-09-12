@@ -7,6 +7,7 @@ import resetRender from './resetRender';
 
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 const genresMenuRef = document.querySelector('#genres_menu');
+const searchForm = document.getElementById('search-form');
 
 const finder = new ApiService();
 const changeLoader = new Loader('.loader');
@@ -25,6 +26,8 @@ function onInput(event) {
   event.preventDefault();
   changeLoader.addLoader();
   clearGalleryContainer();
+  console.log(searchForm);
+  searchForm.firstElementChild.reset();
 
   if (event.target[event.target.selectedIndex].value === '') {
     renderMoviesList(JSON.parse(localStorage.getItem('LastSearchResults')));

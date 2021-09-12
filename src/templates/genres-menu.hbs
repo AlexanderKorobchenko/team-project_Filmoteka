@@ -1,7 +1,9 @@
-<label for="genre">Поиск по
-    <select name="genre" id="genre">
-        <option default>жанрам</option>
-        {{#each this}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-</label>
+<form id="form-for-genre">
+    <label for="genre">Поиск по
+        <select name="genre" id="genre">
+            <option selected="selected">жанрам</option>
+            {{#each this}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+    </label>
+</form>
