@@ -1,23 +1,18 @@
 import ApiService from './apiService';
 import Pagination from 'tui-pagination';
-
-import moviesList from '../templates/main-cards.hbs';
+// import moviesList from '../templates/main-cards.hbs';
 import objectTransformations from './objectTransformations.js';
+import resetRender from './resetRender';
 
-
+const { renderMoviesList, clearGalleryContainer} = resetRender;
 const finder = new ApiService();
-
 const container = document.getElementById('tui-pagination-container');
-const galleryList = document.getElementById('gallery');
 
 let visiblePages =
   document.documentElement.clientWidth > 767 ? 7 : 2;
 
-
 window.options = {
   totalItems: undefined,
-// const options = {
-  //totalItems: totalMoviesFound,
   itemsPerPage: 20,
   visiblePages, 
   page: 1,
@@ -46,16 +41,12 @@ window.options.totalItems = window.options.totalItems || 20000;
 
 window.pagination = new Pagination(container, window.options);
 
-
-
-
 //__________________________________________________________________________________________
 container.addEventListener('click', onClick);
 function onClick(e) {
   console.log(window.pagination.getCurrentPage());
   onPagination(window.pagination.getCurrentPage());
 }
-
 
 function onPagination(pageNumber) {
   finder.pageNumber = pageNumber;
@@ -82,10 +73,6 @@ return res; })
     })
     .then(data => localStorage.setItem('LastSearchResults', JSON.stringify(data)))
     .catch(err => console.log(err));
-}
-function renderMoviesList(movie) {
-  const markup = moviesList(movie);
-  galleryList.innerHTML = markup;
 }
 
 // ========= resetPage ============

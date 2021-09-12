@@ -2,12 +2,11 @@ import 'tui-pagination/dist/tui-pagination.css';
 import '../sass/main.scss';
 import './verify-localstorage';
 import './tui_pagination';
-import './popular-movies-request.js';
+import './request-popular-movies';
 import './request-id-movie';
-import './genres-menu';
+import './request-genres';
 import './gradient-granim.js';
-import './clearInput.js'
 import './disableEnter.js'
-import './input-movies-request';
+import './request-input-movies';
 import './switch-home-liberary';
 import './team-modal';
