@@ -200,6 +200,7 @@ function closeModalWindow() {
     document.querySelector('.image').src = ''
   }, 150)
   refs.body.style.overflow = '';
+  document.querySelector('.frame__container').innerHTML='';
   // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
 };
 // ================= конец открытие/закрытие модалки =================

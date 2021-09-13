@@ -61,7 +61,7 @@ function onSearchMovie(event) {
       localStorage.setItem('LastSearchResults', JSON.stringify(data));
     })
     .catch(err => {
-      console.warm(err);
+      console.warn(err);
     });
 }
 
