@@ -31,6 +31,7 @@ function onInput(event) {
 
   if (event.target[event.target.selectedIndex].value === '') {
     renderMoviesList(JSON.parse(localStorage.getItem('LastSearchResults')));
+    changeLoader.clearLoader();
     return;
   }
 

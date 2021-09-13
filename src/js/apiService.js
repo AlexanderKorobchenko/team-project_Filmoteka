@@ -15,6 +15,7 @@ export default class ApiService {
       `https://api.themoviedb.org/3/search/movie?api_key=${this.key}&language=en-US&query=${this.query}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/movie/${this.query}?api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&with_genres=${this.query}&page=${this.page}`,
+      `https://api.themoviedb.org/3/movie/${this.query}/videos?&api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
     ];
   }
 

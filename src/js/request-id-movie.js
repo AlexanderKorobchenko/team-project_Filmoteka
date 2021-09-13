@@ -1,6 +1,7 @@
 import moviesCard from '../templates/modal-movie.hbs';
 import ApiService from './apiService.js';
 import mainCards from '../templates/main-cards.hbs';
+import { trailerRun } from './trailer';
 // import { options } from './tui_pagination';
 // import Pagination from 'tui-pagination';
 
@@ -30,6 +31,8 @@ function onSearchID(e) {
 
       const watchBtn = document.querySelector('.btn__watch');
       const queueBtn = document.querySelector('.btn__queue');
+      const trailerBtn = document.querySelector('#trailer');
+
       const popularFilm = JSON.parse(localStorage.getItem('LastSearchResults'));
       const arrayPopFilm = localStorage.getItem('watched');
       const arrayPopFilmQ = localStorage.getItem('queue');
@@ -150,9 +153,20 @@ function onSearchID(e) {
         }
       }
       // ================= конец работы кнопки  queue=================
+      // ================= начало работы кнопки watch trailer ==================
+      trailerBtn.addEventListener('click', onStartWatch);
+      function onStartWatch (e) {
+        document.querySelector('.modal__container').classList.add('hidden');
+        trailerRun();
+        // document.querySelector('.modal__container').classList.remove('hidden');
+
+        }
+      // ==================== конец работы кнопки watch trailer ==================
     })
-    .catch(err => console.warm(err));
+    .catch(err => console.warn(err));
 };
+
+
 
 // ================= начало открытие/закрытие модалки =================
 function openModalWindow() {
