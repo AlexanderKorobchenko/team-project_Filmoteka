@@ -1,8 +1,4 @@
-// Путь к изображениям из SASS-файла всегда такой, как из папки css
-//background-image: url('../images/demo.jpg');
-
 @import './base/variables';
-//@import './base/fonts';
 @import './base/_modern-normalize.min.scss';
 @import './base/common';
 @import './base/container';
@@ -19,3 +15,4 @@
 @import './components/button-go-up';
 @import './components/gradient';
 @import './components/error';
+@import './components/error-trailer';
