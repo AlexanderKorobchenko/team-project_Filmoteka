@@ -4,6 +4,7 @@ import ApiService from './apiService.js';
 import Loader from './loader.js';
 import objectTransformations from './objectTransformations';
 import resetRender from './resetRender';
+import { popularMovies } from './request-popular-movies'
 
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finderQuery = new ApiService();
@@ -30,6 +31,14 @@ function onSearchMovie(event) {
   if (newSearchQuery === '') {
     renderMoviesList(currentPageArray);
     changeLoader.clearLoader();
+
+    popularMovies();
+    // finderQuery.searchReset();
+    // finderQuery.searchType = 0;
+    // finderQuery.searchGenres();
+
+    window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));;
+    window.pagination.reset(+JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult')) * 20);
     return;
   }
 

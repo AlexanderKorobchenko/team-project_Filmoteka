@@ -49,6 +49,6 @@ function onInput(event) {
       renderMoviesList(data);
       changeLoader.clearLoader();
     })
-    .catch(err => console.warm(err));
+    .catch(err => console.warn(err));
 }
 
