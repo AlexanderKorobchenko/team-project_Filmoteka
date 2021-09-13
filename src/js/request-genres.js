@@ -16,7 +16,7 @@ createGenresMenu();
 
 function createGenresMenu() {
   const genresArray = JSON.parse(localStorage.getItem('Genres'));
-  genresArray.unshift({ id: '', name: 'none' });
+  // genresArray.unshift({ id: '', name: 'none' });
   genresMenuRef.insertAdjacentHTML('beforeend', menuTemplate(genresArray));
 }
 
@@ -26,7 +26,6 @@ function onInput(event) {
   event.preventDefault();
   changeLoader.addLoader();
   clearGalleryContainer();
-  console.log(searchForm);
   searchForm.firstElementChild.reset();
 
   if (event.target[event.target.selectedIndex].value === '') {
