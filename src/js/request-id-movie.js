@@ -13,6 +13,7 @@ const refs = {
   btnLibrary: document.getElementById('btn-library'),
   library: document.getElementById('liberary'),
   errors: document.getElementById('errors'),
+  body: document.querySelector('body'),
 }
 
 const finder = new ApiService();
@@ -175,6 +176,7 @@ function openModalWindow() {
   document.querySelector(".close__button").addEventListener('click', closeModalWindow);
   refs.modalWindow.addEventListener('click', onControlClick);
   window.addEventListener('keydown', onControlKey);
+  refs.body.style.overflow = 'hidden';
 };
 
 function onControlClick(event) {
@@ -197,6 +199,7 @@ function closeModalWindow() {
   setTimeout(function () {
     document.querySelector('.image').src = ''
   }, 150)
+  refs.body.style.overflow = '';
   // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
 };
 // ================= конец открытие/закрытие модалки =================
