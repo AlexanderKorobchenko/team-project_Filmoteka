@@ -14,8 +14,7 @@ export default class ApiService {
       `https://api.themoviedb.org/3/trending/movie/day?api_key=${this.key}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/search/movie?api_key=${this.key}&language=en-US&query=${this.query}&page=${this.page}&include_adult=false`,
       `https://api.themoviedb.org/3/movie/${this.query}?api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
-      `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&with_genres=${this.query}&page=${this.page}`,
-      `https://api.themoviedb.org/3/movie/${this.query}/videos?&api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&with_genres=${this.query}&page=${this.page}`
     ];
   }
 
@@ -33,7 +32,8 @@ export default class ApiService {
         //console.log(res);
         return res;
       }).catch(err => console.log(err));
-  }
+  };
+
   searchGenres() {
     //тут жестко заданный url, т.к. подгрузка жанров осуществляется без запросов пользователя, один раз,в самом начале работы
     return fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=en-US`)
@@ -41,6 +41,13 @@ export default class ApiService {
       .then(res => { return res; })
       .then(data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
       .catch(err => console.log(err));
+  };
+
+  searchTrailer() {
+    return fetch(`https://api.themoviedb.org/3/movie/${this.query}/videos?&api_key=${this.key}&language=en-US&page=${this.page}&include_adult=false`)
+      .then(response => response.json())
+      .then(res => { return res; })
+      .catch(err => console.warn(err));
   }
 
   searchReset() {

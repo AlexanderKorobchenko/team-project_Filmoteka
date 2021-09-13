@@ -38,7 +38,7 @@ export function popularMovies() {
       // localStorage.setItem('Popular', JSON.stringify(data));
       localStorage.setItem('LastSearchResults', JSON.stringify(data));
     })
-    .catch(err => console.log(err));
+    .catch(err => console.warn(err));
 }
 
 popularMovies();

@@ -72,7 +72,7 @@ function onPagination(pageNumber) {
       return data;
     })
     .then(data => localStorage.setItem('LastSearchResults', JSON.stringify(data)))
-    .catch(err => console.warm(err));
+    .catch(err => console.warn(err));
 }
 
 // ========= resetPage ============
