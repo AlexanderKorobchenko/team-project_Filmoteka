@@ -153,20 +153,18 @@ function onSearchID(e) {
         }
       }
       // ================= конец работы кнопки  queue=================
-      // ================= начало работы кнопки watch trailer ==================
+
+      // ================= начало работы кнопки trailer ==================
       trailerBtn.addEventListener('click', onStartWatch);
-      function onStartWatch (e) {
+      function onStartWatch(e) {
         document.querySelector('.modal__container').classList.add('hidden');
         trailerRun();
         // document.querySelector('.modal__container').classList.remove('hidden');
-
-        }
-      // ==================== конец работы кнопки watch trailer ==================
+      }
+      // ==================== конец работы кнопки trailer ==================
     })
     .catch(err => console.warn(err));
 };
-
-
 
 // ================= начало открытие/закрытие модалки =================
 function openModalWindow() {
