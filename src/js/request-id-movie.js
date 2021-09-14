@@ -17,11 +17,13 @@ const refs = {
 }
 
 const finder = new ApiService();
+let tempContainerLastQuery = null; // переменная для временного хранения значения LastQuery из LocalStorage
 
 refs.galleryList.addEventListener('click', onSearchID);
 
 function onSearchID(e) {
   if (e.target.nodeName === 'UL') { return }
+  tempContainerLastQuery = localStorage.getItem('LastQuery'); // записали последнее значения LastQuery
   finder.searchRequest = e.target.offsetParent.id;
   finder.searchType = 2;
   finder
@@ -201,6 +203,7 @@ function closeModalWindow() {
   }, 150)
   refs.body.style.overflow = '';
   document.querySelector('.frame__container').innerHTML = '';
+  localStorage.setItem('LastQuery', tempContainerLastQuery);
   //finder.searchReset();
   // ()===== Испарвил баг, когда закрывалась подалка на долю секунды картинка прыгала, сейчас все нормально()====
 };
