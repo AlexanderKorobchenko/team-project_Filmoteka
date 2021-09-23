@@ -24,7 +24,7 @@ refs.galleryList.addEventListener('click', onSearchID);
 function onSearchID(e) {
   if (e.target.nodeName === 'UL') { return }
   tempContainerLastQuery = localStorage.getItem('LastQuery'); // записали последнее значения LastQuery
-  finder.searchRequest = e.target.offsetParent.id;
+  finder.searchRequest = e.target.parentNode.id;
   finder.searchType = 2;
   finder
     .searchMovies()
@@ -43,7 +43,7 @@ function onSearchID(e) {
       const currentQueue = refs.library.lastElementChild;
 
       // ================= начало работы кнопки Add to watched =================
-      getIncludesFilms(e.target.offsetParent.id);
+      getIncludesFilms(e.target.parentNode.id);
       watchBtn.addEventListener('click', onWatch);
 
       function getIncludesFilms(id) {
@@ -100,7 +100,7 @@ function onSearchID(e) {
       // ================= конец работы кнопки watched =================
 
       // ================= начало работы кнопки Add to queue =================
-      getIncludesFilmsQ(e.target.offsetParent.id);
+      getIncludesFilmsQ(e.target.parentNode.id);
       queueBtn.addEventListener('click', onQueue);
 
       function getIncludesFilmsQ(id) {

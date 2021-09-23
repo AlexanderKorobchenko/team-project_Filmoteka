@@ -37,7 +37,7 @@ function onSearchMovie(event) {
     // finderQuery.searchType = 0;
     // finderQuery.searchGenres();
 
-    window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));;
+    window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));
     window.pagination.reset(+JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult')) * 20);
     return;
   }
