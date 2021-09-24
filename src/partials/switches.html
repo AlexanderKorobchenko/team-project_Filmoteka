@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="switches">
+        <!-- Разметка переключателя языков -->
+        <div class="language-switch">
+            <span class="language-switch__text">En</span>
+
+            <div class="language-switch__control">
+                <input class="language-switch__toggle" type="checkbox" name="theme" id="language-switch-toggle"
+                    aria-label="Переключить между языками" />
+                <label aria-hidden="true" class="language-switch__track" for="language-switch-toggle"> </label>
+                <div aria-hidden="true" class="language-switch__marker"></div>
+            </div>
+
+            <span class="language-switch__text">Ru</span>
+        </div>
+
+        <!-- Разметка переключателя темы -->
+        <div class="theme-switch">
+            <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+                <use href="./images/sprite.svg#sun"></use>
+            </svg>
+
+            <div class="theme-switch__control">
+                <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+                    aria-label="Переключить между тёмной и светлой темой" />
+                <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle"> </label>
+                <div aria-hidden="true" class="theme-switch__marker"></div>
+            </div>
+
+            <svg class="theme-switch__icon" aria-label="Иконка луны">
+                <use href="./images/sprite.svg#moon"></use>
+            </svg>
+        </div>
+    </div>
+</div>

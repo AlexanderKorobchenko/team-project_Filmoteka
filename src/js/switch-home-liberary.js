@@ -6,7 +6,7 @@ import resetRender from './resetRender';
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finder = new ApiService();
 
-const href = {
+const refs = {
   logoBtn: document.getElementById('logo-home'),
   homeBtn: document.getElementById('btn-home'),
   libraryBtn: document.getElementById('btn-library'),
@@ -21,28 +21,28 @@ const href = {
 };
 
 // переключение между страницами
-href.logoBtn.addEventListener('click', onGoHome);
-href.homeBtn.addEventListener('click', onGoHome);
-href.libraryBtn.addEventListener('click', onGoLibrary);
+refs.logoBtn.addEventListener('click', onGoHome);
+refs.homeBtn.addEventListener('click', onGoHome);
+refs.libraryBtn.addEventListener('click', onGoLibrary);
 
 function onGoHome(event) {
   event.preventDefault();
-  href.search.firstElementChild.reset();
+  refs.search.firstElementChild.reset();
   clearGalleryContainer();
-  href.errors.firstElementChild.classList.add('hidden');
-  href.errors.lastElementChild.classList.add('hidden');
-  href.tuiPagination.classList.remove('hidden');
-  href.genresMenu.classList.remove('hidden');
-  href.genresMenu.reset();
+  refs.errors.firstElementChild.classList.add('hidden');
+  refs.errors.lastElementChild.classList.add('hidden');
+  refs.tuiPagination.classList.remove('hidden');
+  refs.genresMenu.classList.remove('hidden');
+  refs.genresMenu.reset();
 
-  href.backgroundHome.classList.remove('hidden');
-  href.backgroundLibrary.classList.add('hidden');
+  refs.backgroundHome.classList.remove('hidden');
+  refs.backgroundLibrary.classList.add('hidden');
 
-  href.libraryBtn.classList.remove('navigation__btn-current');
-  href.homeBtn.classList.add('navigation__btn-current');
+  refs.libraryBtn.classList.remove('navigation__btn-current');
+  refs.homeBtn.classList.add('navigation__btn-current');
 
-  href.search.classList.remove('hidden');
-  href.library.classList.add('hidden');
+  refs.search.classList.remove('hidden');
+  refs.library.classList.add('hidden');
 
   //рендер текущей страници
   // const firstPopularPage = JSON.parse(localStorage.getItem('Popular'));
@@ -58,18 +58,19 @@ function onGoHome(event) {
 function onGoLibrary(event) {
   event.preventDefault();
   clearGalleryContainer();
-  href.errors.lastElementChild.classList.add('hidden');
-  href.tuiPagination.classList.add('hidden');
-  href.genresMenu.classList.add('hidden');
+  refs.errors.firstElementChild.classList.add('hidden');
+  refs.errors.lastElementChild.classList.add('hidden');
+  refs.tuiPagination.classList.add('hidden');
+  refs.genresMenu.classList.add('hidden');
 
-  href.backgroundLibrary.classList.remove('hidden');
-  href.backgroundHome.classList.add('hidden');
+  refs.backgroundLibrary.classList.remove('hidden');
+  refs.backgroundHome.classList.add('hidden');
 
-  href.homeBtn.classList.remove('navigation__btn-current');
-  href.libraryBtn.classList.add('navigation__btn-current');
+  refs.homeBtn.classList.remove('navigation__btn-current');
+  refs.libraryBtn.classList.add('navigation__btn-current');
 
-  href.library.classList.remove('hidden');
-  href.search.classList.add('hidden');
+  refs.library.classList.remove('hidden');
+  refs.search.classList.add('hidden');
 
   let switchLibrary = Boolean(localStorage.getItem('checkBoxLibrary'));
 
@@ -83,34 +84,34 @@ function onGoLibrary(event) {
 }
 
 //переключение между библиотеками
-href.library.firstElementChild.addEventListener('click', onClickWathed);
-href.library.lastElementChild.addEventListener('click', onClickQueue);
+refs.library.firstElementChild.addEventListener('click', onClickWathed);
+refs.library.lastElementChild.addEventListener('click', onClickQueue);
 
 function onClickWathed() {
   clearGalleryContainer();
-  href.errors.lastElementChild.classList.add('hidden');
+  refs.errors.lastElementChild.classList.add('hidden');
   localStorage.setItem('checkBoxLibrary', '');
   showWatched();
 }
 
 function onClickQueue() {
   clearGalleryContainer();
-  href.errors.lastElementChild.classList.add('hidden');
+  refs.errors.lastElementChild.classList.add('hidden');
   localStorage.setItem('checkBoxLibrary', 'queue');
   showQueue();
 }
 
 function showWatched() {
-  href.library.firstElementChild.classList.add('liberary__btn-current');
-  href.library.lastElementChild.classList.remove('liberary__btn-current');
+  refs.library.firstElementChild.classList.add('liberary__btn-current');
+  refs.library.lastElementChild.classList.remove('liberary__btn-current');
 
   const watchedArray = JSON.parse(localStorage.getItem('watched'));
 
   // если библиотека пустая
   if (watchedArray.length === 0) {
     clearGalleryContainer();
-    href.errors.lastElementChild.classList.remove('hidden');
-    href.tuiPagination.classList.add('hidden');
+    refs.errors.lastElementChild.classList.remove('hidden');
+    refs.tuiPagination.classList.add('hidden');
     return;
   }
 
@@ -119,16 +120,16 @@ function showWatched() {
 }
 
 function showQueue() {
-  href.library.lastElementChild.classList.add('liberary__btn-current');
-  href.library.firstElementChild.classList.remove('liberary__btn-current');
+  refs.library.lastElementChild.classList.add('liberary__btn-current');
+  refs.library.firstElementChild.classList.remove('liberary__btn-current');
 
   const watchedQueue = JSON.parse(localStorage.getItem('queue'));
 
   // если библиотека пустая
   if (watchedQueue.length === 0) {
     clearGalleryContainer();
-    href.errors.lastElementChild.classList.remove('hidden');
-    href.tuiPagination.classList.add('hidden');
+    refs.errors.lastElementChild.classList.remove('hidden');
+    refs.tuiPagination.classList.add('hidden');
     return;
   }
 
