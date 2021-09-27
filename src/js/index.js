@@ -10,3 +10,4 @@ import './disableEnter.js'
 import './request-input-movies';
 import './switch-home-liberary';
 import './team-modal';
+import './switch-language';

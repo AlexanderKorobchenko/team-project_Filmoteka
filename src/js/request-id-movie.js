@@ -29,6 +29,7 @@ function onSearchID(e) {
   finder
     .searchMovies()
     .then(data => {
+      
       refs.modalWindow.innerHTML = moviesCard(data);
       openModalWindow();
 
