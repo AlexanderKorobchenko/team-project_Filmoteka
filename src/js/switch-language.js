@@ -1,3 +1,10 @@
+import ApiService from './apiService.js';
+import createGenresMenu from './request-genres';
+
+const genresMenuRef = document.querySelector('#genres_menu');
+
+const newApiService = new ApiService();
+
 const refs = {
   switchBtn: document.getElementById('language-switch-toggle'),
   // header
@@ -7,12 +14,6 @@ const refs = {
   inputGenres: document.getElementById('form-for-genre'),
   watchedBtn: document.getElementById('liberary').firstElementChild,
   queueBtn: document.getElementById('liberary').lastElementChild,
-  // modal window
-  // voteText: document.getElementById('vote-text'),
-  // popularityText: document.getElementById('popularity'),
-  // originalTitle: document.getElementById('original-title'),
-  // genreText: document.getElementById('genre-text'),
-  // about: document.querySelector('.film__about__title'),
   // footer
   footerFirstText: document.getElementById('footer__first-text'),
   footerSecondText: document.querySelector('.footer__second-text'),
@@ -33,17 +34,24 @@ refs.switchBtn.addEventListener('click', changeLanguage);
 
 function changeLanguage(event) {
   if (!event.target.checked) {
-    translateToEnglish();
     localStorage.setItem('language', '');
+    translateToEnglish();
   }
 
   if (event.target.checked) {
+    localStorage.setItem('language', 'ru');
     translateToRussian();
-    localStorage.setItem('language', 'Ru');
   }
 }
 
 function translateToEnglish() {
+  newApiService.searchGenres();
+
+  setTimeout(() => {
+    genresMenuRef.innerHTML = '';
+    createGenresMenu();
+  }, 150);
+
   refs.homeBtn.textContent = 'home';
   refs.libraryBtn.textContent = 'my library';
   refs.input.placeholder = 'Movie search...';
@@ -58,11 +66,21 @@ function translateToEnglish() {
 }
 
 function translateToRussian() {
+  newApiService.searchGenres();
+
+  setTimeout(() => {
+    genresMenuRef.innerHTML = '';
+    createGenresMenu();
+  }, 150);
+
   refs.homeBtn.textContent = 'главная';
   refs.libraryBtn.textContent = 'моя библиотека';
   refs.input.placeholder = 'Поиск фильмов...';
-  refs.inputGenres.firstElementChild.textContent = 'Поиск по';
-  refs.inputGenres.lastElementChild.firstElementChild.textContent = 'жанрам';
+  setTimeout(() => {
+    document.getElementById('form-for-genre').firstElementChild.textContent = 'Поиск по';
+    document.getElementById('form-for-genre').lastElementChild.firstElementChild.textContent =
+      'жанрам';
+  }, 160);
   refs.watchedBtn.textContent = 'просмотренные';
   refs.queueBtn.textContent = 'в очереди';
   refs.footerFirstText.textContent = ' Все права защищены |';
