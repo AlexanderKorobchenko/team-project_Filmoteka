@@ -21,7 +21,7 @@
       <h2 class='film__title'>{{title}}</h2>
       <ul>
         <li class='film__item'>
-          <p class='film__details' id='vote-text'>Vote / Votes</p>
+          <p class='film__details' id='vote-text'>Голосовать / Голоса</p>
           <p class='film__info--uper'>
             <span class='film__rating--orange'>{{vote_average}}</span>
             <span class='film__rating--divider'> / </span>
@@ -29,15 +29,15 @@
           </p>
         </li>
         <li class='film__item'>
-          <p class='film__details' id='popularity'>Popularity</p>
+          <p class='film__details' id='popularity'>Популярность</p>
           <p class='film__info--uper'>{{popularity}}</p>
         </li>
         <li class='film__item'>
-          <p class='film__details' id'original-title'>Original title</p>
+          <p class='film__details' id'original-title'>Оригинальное название</p>
           <p>{{original_title}}</p>
         </li>
         <li class='film__item'>
-          <p class='film__details' id='genre-text'>Genre</p>
+          <p class='film__details' id='genre-text'>Жанр</p>
           <p class='film__info'>
             {{#if genres}}
             {{#each genres}}
@@ -50,15 +50,15 @@
       </ul>
     </div>
     <div>
-      <h3 class='film__about__title'>About</h3>
+      <h3 class='film__about__title'>О фильме</h3>
       <p class='film__about__text'>
         {{overview}}
       </p>
     </div>
     <div class='film__button__wrapper'>
-      <button type='button' class='film__button btn__watch' data-id='{{id}}'>Add to watched</button>
-      <button type='button' class='film__button btn__queue' data-id='{{id}}'>Add to queue</button>
-      <button type='button' class='film__button' id="trailer" data-id='{{id}}'>trailer</button>
+      <button type='button' class='film__button btn__watch' data-id='{{id}}'>Добавить в просмотренные</button>
+      <button type='button' class='film__button btn__queue' data-id='{{id}}'>Добавить в очередь</button>
+      <button type='button' class='film__button' id="trailer" data-id='{{id}}'>Трейлер</button>
     </div>
     <button type='button' class='close__button' data-action='close-modal'></button>
   </div>

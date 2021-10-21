@@ -14,9 +14,8 @@ const changeLoader = new Loader('.loader');
 
 createGenresMenu();
 
-function createGenresMenu() {
+export default function createGenresMenu() {
   const genresArray = JSON.parse(localStorage.getItem('Genres'));
-  // genresArray.unshift({ id: '', name: 'none' });
   genresMenuRef.insertAdjacentHTML('beforeend', menuTemplate(genresArray));
 }
 
@@ -39,8 +38,10 @@ function onInput(event) {
   finder
     .searchMovies()
     .then(({ results }) => {
-      window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));;
-      window.pagination.reset(+JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult')) * 20);
+      window.options.totalItems = +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult'));
+      window.pagination.reset(
+        +JSON.parse(localStorage.getItem('TotalPagesInLastSearchResult')) * 20,
+      );
       return objectTransformations(results);
     })
     .then(data => {
@@ -50,4 +51,3 @@ function onInput(event) {
     })
     .catch(err => console.warn(err));
 }
-
